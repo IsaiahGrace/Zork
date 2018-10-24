@@ -9,10 +9,11 @@ public:
   Inventory() {};
   virtual ~Inventory() {};
 
-  vector<Item> Items;
+  vector<Item> items;
 
   Item* getItem(string itemName); // Retruns a pointer to the item, used as a lookup.
   void printInventory();
+  
 };
 
 #endif

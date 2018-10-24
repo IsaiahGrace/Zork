@@ -11,12 +11,12 @@ Context::Context(Room* startingRoom, Inventory* inventory){
 void Context::parseContext(){
   /* Just commenting this out so it can compile
   if(currentRoom != NULL){
-    for(unsigned int i = 0; i < currentRoom.triggers.size(); i++){
+    for(unsigned int i = 0; i < currentRoom->triggers.size(); i++){
       if(currentRoom.triggers[i].command == NULL){
-
+	
       }
-      }
-      }*/
+    }
+  }//*/
 }
 
 Trigger& checkCommandTriggers(string input){
