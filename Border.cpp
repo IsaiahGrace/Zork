@@ -10,5 +10,7 @@ Border::Border(xml_node<> *node) {
     
     if(tagName == "direction") direction = child->value();
     else if(tagName == "name") name = child->value();
+
+    child = child->next_sibling();
   }
 }
