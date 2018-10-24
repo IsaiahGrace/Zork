@@ -1,5 +1,5 @@
-#ifndef _ROOM_HPP_
-#define _ROOM_HPP_
+#ifndef ROOM_HPP
+#define ROOM_HPP
 #include <vector>
 #include <string>
 #include "Base.hpp"

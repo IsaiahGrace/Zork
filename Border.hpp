@@ -1,5 +1,5 @@
-#ifndef _BORDER_HPP_
-#define _BORDER_HPP_
+#ifndef BORDER_HPP
+#define BORDER_HPP
 #include <string>
 #include "rapidxml.hpp"
 using namespace rapidxml;

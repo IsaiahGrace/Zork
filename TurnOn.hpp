@@ -1,5 +1,5 @@
-#ifndef _TURNON_HPP_
-#define _TURNON_HPP_
+#ifndef TURNON_HPP
+#define TURNON_HPP
 
 #include <string>
 #include "rapidxml.hpp"

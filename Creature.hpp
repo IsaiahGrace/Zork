@@ -1,5 +1,5 @@
-#ifndef _CREATURE_HPP_
-#define _CREATURE_HPP_
+#ifndef CREATURE_HPP
+#define CREATURE_HPP
 #include <vector>
 #include <string>
 #include "rapidxml.hpp"

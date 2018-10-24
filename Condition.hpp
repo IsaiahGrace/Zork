@@ -1,5 +1,5 @@
-#ifndef _CONDITION_HPP_
-#define _CONDITION_HPP_
+#ifndef CONDITION_HPP
+#define CONDITION_HPP
 #include <string>
 #include "rapidxml.hpp"
 using namespace rapidxml;

@@ -4,13 +4,6 @@
 
 using namespace std;
 
-Base *search(vector<Base> *bases, string name) {
-  for(unsigned int i = 0; i < bases->size(); i++) {
-    if(name.compare((*bases)[i].name)) return &(*bases)[i];
-  }
-  return NULL;
-}
-
 int main(int argc, char **argv) {
   // main method broken down into tasks
   // 1. Initilization of the game
@@ -35,7 +28,7 @@ int main(int argc, char **argv) {
   fclose(fptr);
 
   // Create Player variables
-
+  // Context
 
   // ******************************
   // Start the Finite state Machine

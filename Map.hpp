@@ -1,5 +1,5 @@
-#ifndef MAP_HPP_
-#define MAP_HPP_
+#ifndef MAP_HPP
+#define MAP_HPP
 #include <vector>
 #include <string>
 #include <stdio.h>

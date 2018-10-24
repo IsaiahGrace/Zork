@@ -1,5 +1,5 @@
-#ifndef _CONTAINER_HPP_
-#define _CONTAINER_HPP_
+#ifndef CONTAINER_HPP
+#define CONTAINER_HPP
 #include <string>
 #include <vector>
 #include "rapidxml.hpp"

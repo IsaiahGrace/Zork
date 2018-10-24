@@ -1,5 +1,5 @@
-#ifndef _BASE_HPP_
-#define _BASE_HPP_
+#ifndef BASE_HPP
+#define BASE_HPP
 #include <string>
 #include <vector>
 #include "rapidxml.hpp"
@@ -14,8 +14,6 @@ public:
   Base() {};
   Base(xml_node<> *node);
   virtual ~Base() {};
-
-  //static Base *search(vector<Base> *bases, string name);
 
   string name;
   string status;

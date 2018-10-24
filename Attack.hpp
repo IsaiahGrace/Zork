@@ -1,5 +1,5 @@
-#ifndef _ATTACK_HPP_
-#define _ATTACK_HPP_
+#ifndef ATTACK_HPP
+#define ATTACK_HPP
 #include <string>
 #include <vector>
 #include "rapidxml.hpp"

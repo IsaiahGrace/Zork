@@ -1,5 +1,5 @@
-#ifndef _ITEM_HPP_
-#define _ITEM_HPP_
+#ifndef ITEM_HPP
+#define ITEM_HPP
 #include <string>
 #include "Base.hpp"
 #include "TurnOn.hpp"

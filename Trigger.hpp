@@ -1,5 +1,5 @@
-#ifndef TRIGGER_HPP_
-#define TRIGGER_HPP_
+#ifndef TRIGGER_HPP
+#define TRIGGER_HPP
 #include <string>
 #include <vector>
 #include "rapidxml.hpp"
