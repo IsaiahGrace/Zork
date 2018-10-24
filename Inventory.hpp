@@ -4,15 +4,15 @@
 #include <vector>
 #include "Item.hpp"
 
-class Invintory {
+class Inventory {
 public:
-  Invintory() {};
-  virtual ~Invintory() {};
+  Inventory() {};
+  virtual ~Inventory() {};
 
   vector<Item> Items;
 
   Item& getItem(string itemName); // Retruns a refrence to the item, used as a lookup.
-  void printInvintory();
+  void printInventory();
 };
 
 #endif

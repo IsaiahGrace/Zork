@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Invintory.hpp"
+#include "Inventory.hpp"
 
-Item& Invintory::getItem(string itemName) {
+Item& Inventory::getItem(string itemName) {
   for (unsigned int i = 0; i < Items.size(); i++) {
     if(Items[i].name == itemName) return Items[i];
   }

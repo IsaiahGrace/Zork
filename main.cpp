@@ -6,8 +6,8 @@ using namespace std;
 
 // Game Commands
 // n,s,e,w -- Movement
-// i -- prints invintory
-// take(item) -- changes item ownership from room or container to invintory.
+// i -- prints inventory
+// take(item) -- changes item ownership from room or container to inventory.
 
 int main(int argc, char **argv) {
   // main method broken down into tasks
