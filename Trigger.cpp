@@ -1,11 +1,13 @@
 #include "Trigger.hpp"
+#include <iostream>
 
 Trigger::Trigger(xml_node<> *node) {
   xml_node<> *child = node->first_node();
   
   while(child) {
     string tagName = child->name();
-
+    std::cout << tagName << std::endl;
+    
     if(tagName == "type") type = child->value();
     else if(tagName == "command") command = child->value();
     else if(tagName == "condition") conditions.push_back(Condition(child));

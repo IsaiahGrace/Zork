@@ -15,15 +15,18 @@ int main(int argc, char **argv) {
   // ******************
   if(argc != 2) {
     cout << "Error, please specify one .xml map file (argc != 2)" << endl;
+    return EXIT_FAILURE;
   }
   FILE *fptr = fopen(argv[1], "r");
   if(fptr == NULL) {
     cout << "Error, fopen failed to find .xml file (fptr == NULL)" << endl;
+    return EXIT_FAILURE;
   }
 
   // Construct the Map object
   Map map(fptr);
   fclose(fptr);
+
   
   // Create Player variables
 

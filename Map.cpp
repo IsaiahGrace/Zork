@@ -1,4 +1,5 @@
 #include "Map.hpp"
+#include <iostream>
 
 Map::Map(FILE *fptr) {
   //Determine the .xml file size
@@ -21,7 +22,7 @@ Map::Map(FILE *fptr) {
 
   while(node) {
     string name = node->name();
-    //cout << "Name = " << name << endl;
+    std::cout << name << std::endl;
 
     if(name == "room") rooms.push_back(Room(node));
     else if(name == "item") items.push_back(Item(node));
