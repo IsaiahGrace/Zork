@@ -11,7 +11,7 @@ class Trigger {
 public:
 	Trigger(xml_node<> *node);
 	virtual ~Trigger() {};
-	//take 2
+	//take 3
 	string type = NULL;
 	string command;
 	vector<Condition> conditions;
