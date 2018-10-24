@@ -19,10 +19,3 @@ Container::Container(xml_node<> *node) : Base::Base(node) {
     child = child->next_sibling();
   }
 }
-
-Container *Container::search(vector<Container> *containers, string name) {
-  for(unsigned int i = 0; i < containers->size(); i++) {
-    if(!name.compare((*containers)[i].name)) return &(*containers)[i];
-  }
-  return NULL;
-}
