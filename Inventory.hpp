@@ -11,7 +11,7 @@ public:
 
   vector<Item> Items;
 
-  Item& getItem(string itemName); // Retruns a refrence to the item, used as a lookup.
+  Item* getItem(string itemName); // Retruns a pointer to the item, used as a lookup.
   void printInventory();
 };
 

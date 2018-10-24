@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 
-Context::Context(Room& currentRoom, Inventory& currentInventory){
-  this->currentRoom = currentRoom;
-  this->currentInventory = currentInventory;
+Context::Context(Room* startingRoom, Inventory* inventory){
+  currentRoom = startingRoom;
+  this->inventory = inventory;
 }
 
 

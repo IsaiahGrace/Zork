@@ -11,7 +11,7 @@ using namespace std;
 
 class Context {
 public:
-  Context(Room,Inventory);
+  Context(Room* startingRoom, Inventory* inventory);
   virtual ~Context() {};
 
   void parseContext();
@@ -21,8 +21,11 @@ public:
   vector<Trigger> commandTriggers;
   vector<Trigger> nonCommandTriggers;
 
-  Room currentRoom;
-  Inventory currentInventory;
+  // currentRoom needs to be a pointer because it will change and refrences cannot be changed
+  Room* currentRoom = NULL;
+  // I tried to make inventory a refrence, because it never changes.
+  // but I can't get the refrence initilization syntax to work at all... So I'ts a pointer.
+  Inventory* inventory = NULL;
 
 };
 
