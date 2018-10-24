@@ -9,8 +9,8 @@ Condition::Condition(xml_node<> *node) {
     std::cout << tagName << std::endl;
     
     if(tagName == "has") {
-      if(child->value() == "yes") has = true;
-      else if(child->value() == "no") has = false;
+      if(string(child->value()) == "yes") has = true;
+      else if(string(child->value()) == "no") has = false;
     }
     else if(tagName == "object") object = child->value();
     else if(tagName == "status") status = child->value();

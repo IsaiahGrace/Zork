@@ -18,7 +18,7 @@ Base::Base(xml_node<> *node) {
 }
 
 Base *Base::search(vector<Base> *bases, string name) {
-  for(int i = 0; i < bases->size(); i++) {
+  for(unsigned int i = 0; i < bases->size(); i++) {
     if(name.compare((*bases)[i].name)) return &(*bases)[i];
   }
   return NULL;
