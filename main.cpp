@@ -44,19 +44,22 @@ int main(int argc, char **argv) {
   
   // Execute trigger
   
-  //Maybe this method of FSM isn't the best? Maybe nested loops would work better?
   /*
-    stateType state = WAIT_FOR_COMMAND;
-    
-    switch (state) {
-    case WAIT_FOR_COMMAND : ;//Wait for command
-    break;
-    case CHECK_FOR_COMMAND_OVERIDE :
-    break;
-    case EXECUTE_COMMAND:
-    break
-    }*/
-   
+   * while(1):
+   *
+   * 	#check context for active triggers
+   * 	if trigger condition is met:
+   * 		#execute trigger
+   *
+   * 	else:
+   * 		#scan command
+   *
+   * 		if context has overrides for command:
+   * 			#execute override command
+   * 		else:
+   * 			#execute regular command
+   *
+   */
 
   // *************************
   // cleanup after end of game
