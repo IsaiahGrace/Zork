@@ -59,11 +59,14 @@ int main(int argc, char **argv) {
    *
    * 	else:
    * 		#scan command
+   *		command must be parsed at this point and placed into a string
    *
-   * 		if context has overrides for command:
+   *
+   * 		if context.checkCommandTriggers(string):
    * 			#execute override command
    * 		else:
-   * 			#execute regular command
+   * 			#execute regular command by calling execute(string)
+   *
    *
    */
 
