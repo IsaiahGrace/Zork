@@ -1,8 +1,8 @@
 all: *.cpp
-	g++ *.cpp -g -o Zork
+	g++ -Wall *.cpp -g -o Zork
 
 test: all
-	./Zork samples/sample.txt.xml
+	./Zork samples/sample.xml ; \
 
 clean:
 	/bin/rm -f *.o

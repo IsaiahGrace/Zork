@@ -12,13 +12,13 @@ using namespace rapidxml;
 
 class Map {
 public:
-	Map(FILE *fptr);
-	virtual ~Map() {};
+  Map(FILE *fptr);
+  virtual ~Map() {};
 
-	vector<Room> rooms;
-	vector<Item> items;
-	vector<Container> containers;
-	vector<Creature> creatures;
+  vector<Room> rooms;
+  vector<Item> items;
+  vector<Container> containers;
+  vector<Creature> creatures;
 };
 
 #endif

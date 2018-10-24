@@ -8,14 +8,11 @@
 
 class Container : public Base {
 public:
-	Container() {};
-	Container(xml_node<> *node);
-	virtual ~Container() {};
-
-	static Container *search(vector<Container> *containers, string name);
+  Container(xml_node<> *node);
+  virtual ~Container() {};
 	
-	string accept; //The container unlocker
-	vector<string> items; //Items contained in the container
+  string accept; //The container unlocker
+  vector<string> items; //Items contained in the container
 };
 
 #endif

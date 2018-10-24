@@ -15,7 +15,7 @@ public:
   Base(xml_node<> *node);
   virtual ~Base() {};
 
-  static Base *search(vector<Base> *bases, string name);
+  //static Base *search(vector<Base> *bases, string name);
 
   string name;
   string status;
