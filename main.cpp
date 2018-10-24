@@ -4,6 +4,11 @@
 
 using namespace std;
 
+// Game Commands
+// n,s,e,w -- Movement
+// i -- prints invintory
+// take(item) -- changes item ownership from room or container to invintory.
+
 int main(int argc, char **argv) {
   // main method broken down into tasks
   // 1. Initilization of the game
