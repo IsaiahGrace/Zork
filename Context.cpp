@@ -9,14 +9,24 @@ Context::Context(Room* startingRoom, Inventory* inventory){
 
 
 void Context::parseContext(){
-/*
+	//clear trigger vectors
+
+
   if(currentRoom != NULL){
     for(unsigned int i = 0; i < currentRoom->triggers.size(); i++){
-      if(currentRoom.triggers[i].command == NULL){
-	
+      if(currentRoom->triggers[i].command == ""){
+    	  nonCommandTriggers.push_back(&currentRoom->triggers[i]);
+      }
+      else{
+    	  commandTriggers.push_back(&currentRoom->triggers[i]);
       }
     }
-  }*/
+    //check containers in room
+    //check items in room
+    //check creatures in room
+
+  }
+  //check items in inventory
 }
 
 Trigger& checkCommandTriggers(string input){

@@ -18,8 +18,10 @@ public:
   Trigger& checkCommandTriggers();
   Trigger& checkNonCommandTriggers();
 
-  vector<Trigger> commandTriggers;
-  vector<Trigger> nonCommandTriggers;
+  //you cannot have a vector of references thanks to their immutability
+  //so now it's a vector of pointers!
+  vector<Trigger*> commandTriggers;
+  vector<Trigger*> nonCommandTriggers;
 
   // currentRoom needs to be a pointer because it will change and refrences cannot be changed
   Room* currentRoom = NULL;
