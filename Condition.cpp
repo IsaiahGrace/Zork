@@ -6,7 +6,7 @@ Condition::Condition(xml_node<> *node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout <<"Condition: "<< tagName << std::endl;
     
     if(tagName == "has") {
       if(string(child->value()) == "yes") has = true;

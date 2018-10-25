@@ -22,7 +22,7 @@ Map::Map(FILE *fptr) {
 
   while(node) {
     string name = node->name();
-    std::cout << name << std::endl;
+    std::cout <<"Map: " << name << std::endl;
 
     if(name == "room") rooms.push_back(Room(node));
     else if(name == "item") items.push_back(Item(node));

@@ -6,7 +6,7 @@ Border::Border(xml_node<> *node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout <<"Border: "<< tagName << std::endl;
     
     if(tagName == "direction") direction = child->value();
     else if(tagName == "name") name = child->value();

@@ -6,7 +6,7 @@ TurnOn::TurnOn(xml_node<> *node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout << "TurnOn: " << tagName << std::endl;
     
     if(tagName == "print") printText = child->value();
     else if(tagName == "action") action = child->value();

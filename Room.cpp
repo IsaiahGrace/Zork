@@ -8,7 +8,7 @@ Room::Room(xml_node<char> *node) : Base::Base(node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout << "Room: "<<  tagName << std::endl;
 
     if(tagName == "item") items.push_back(child->name());
     else if(tagName == "border") borders.push_back(Border(child));

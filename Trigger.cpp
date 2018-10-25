@@ -6,7 +6,7 @@ Trigger::Trigger(xml_node<> *node) {
   
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout << "Trigger: " << tagName << std::endl;
     
     if(tagName == "type") type = child->value();
     else if(tagName == "command") command = child->value();

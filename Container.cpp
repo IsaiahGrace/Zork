@@ -11,7 +11,7 @@ Container::Container(xml_node<> *node) : Base::Base(node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout << "Container: " << tagName << std::endl;
     
     if(!tagName.compare("accept")) accept = child->value();
     else if(!tagName.compare("item")) items.push_back(child->value());

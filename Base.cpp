@@ -6,7 +6,7 @@ Base::Base(xml_node<> *node) {
 
   while(child) {
     string tagName = child->name();
-    std::cout << tagName << std::endl;
+    std::cout << "Base: " << tagName << std::endl;
     
     if(tagName == "name") this->name = child->value();
     else if(tagName == "status") this->status = child->value();
