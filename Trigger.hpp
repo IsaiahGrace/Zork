@@ -12,7 +12,7 @@ public:
   Trigger(xml_node<> *node);
   virtual ~Trigger() {};
   
-  string type = NULL;
+  string type;
   string command;
   vector<Condition> conditions;
   string print;
