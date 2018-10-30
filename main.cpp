@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
+
   // Construct the Map object
   Map map(fptr);
   fclose(fptr);

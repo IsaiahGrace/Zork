@@ -1,7 +1,11 @@
 #include "Room.hpp"
+#include "Map.hpp"
+
 #include <iostream>
 
-Room::Room(xml_node<char> *node) : Base::Base(node) {
+
+Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node) {
+  Map* mapptr = static_cast<Map*>(mymap);
   xml_node<> *child = node->first_node();
 
   isExit = false;
@@ -10,7 +14,37 @@ Room::Room(xml_node<char> *node) : Base::Base(node) {
     string tagName = child->name();
     std::cout << "Room: "<<  tagName << std::endl;
 
-    if(tagName == "item") items.push_back(child->name());
+    /*
+     * this block here goes through all initialized items/containers/creatures
+     * and finds if their name was defined
+     * if it is, it adds them to the room
+     */
+    if(tagName == "item"){
+    	for(unsigned int i = 0; i < mapptr->items.size() ;i++){
+    		std::cout << "RUNNING THROUGH ITEMS:" << mapptr->items[i].name << std::endl;
+      		if(mapptr->items[i].name == child->value()){
+      			std::cout << "Item:" << mapptr->items[i].name << " added to room" << std::endl;
+       			items.push_back(mapptr->items[i]);
+      		}
+    	}
+    }
+    else if(tagName == "creature"){
+    	for(unsigned int i = 0; i < mapptr->creatures.size();i++){
+    		if(mapptr->creatures[i].name == child->value()){
+    			std::cout << "Creature:" << mapptr->creatures[i].name << "added to room"<< std::endl;
+    			creatures.push_back(mapptr->creatures[i]);
+    		}
+    	}
+    }
+    else if(tagName == "container"){
+    	for(unsigned int i = 0; i < mapptr->containers.size();i++){
+    		if(mapptr->containers[i].name == child->value()){
+    			std::cout << "Container:" << mapptr->containers[i].name << "added to room"<< std::endl;
+    			containers.push_back(mapptr->containers[i]);
+    		}
+    	}
+    }
+
     else if(tagName == "border") borders.push_back(Border(child));
     else if(tagName == "type") isExit = true; // Only rooms with exits have the <type> tagName
 

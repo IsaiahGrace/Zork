@@ -5,16 +5,20 @@
 #include "Base.hpp"
 #include "Border.hpp"
 #include "rapidxml.hpp"
-using namespace rapidxml;
+#include "Creature.hpp"
+#include "Container.hpp"
+#include "Item.hpp"
 
 class Room : public Base {
 public:
-  Room(xml_node<> *node);
+  Room(rapidxml::xml_node<> *node,void* mymap);
   virtual ~Room() {};
 
   bool isExit;
-  vector<string> items;
+  vector<Item> items;
   vector<Border> borders;
+  vector<Creature> creatures;
+  vector<Container> containers;
 };
 
 #endif
