@@ -3,6 +3,8 @@
 
 Trigger::Trigger(xml_node<> *node) {
   xml_node<> *child = node->first_node();
+  //command must be initialized to emptystring to mean no command for context
+  command = "";
   
   while(child) {
     string tagName = child->name();
