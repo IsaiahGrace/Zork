@@ -36,14 +36,23 @@ int main(int argc, char **argv) {
   fclose(fptr);
 
   // Create Player variables
-  Inventory playerInventory();
+  Inventory playerInventory;
   // Context
-
-
-  //Context gameContext(,&playerInventory);
+  Room* entranceRoom = map.getRoom("Entrance");
+  Context gameContext(entranceRoom, &playerInventory);
   // ******************************
   // Start the Finite state Machine
   // ******************************
+
+
+  while(1){
+	  //get current context
+	  gameContext.parseContext();
+
+	  //check context for active noncommand triggers
+
+
+  }
 
   /*
    * while(1):

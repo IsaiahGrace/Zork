@@ -50,11 +50,11 @@ Map::Map(FILE *fptr) {
 }
 
 //returns the room that has same name as argument
-Room Map::getRoom(char* roomname){
+Room* Map::getRoom(string roomname){
 	for(unsigned int i = 0; i < rooms.size(); i++){
 		if(rooms[i].name.compare(roomname) == 0){
-			return rooms[i];
+			return &rooms[i];
 		}
 	}
-
+	return NULL;
 }

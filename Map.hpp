@@ -15,7 +15,7 @@ public:
   Map(FILE *fptr);
   virtual ~Map() {};
 
-  Room getRoom(char*);
+  Room* getRoom(string);
   vector<Room> rooms;
   vector<Item> items;
   vector<Container> containers;
