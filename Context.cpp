@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 
+Context::Context(){
+	currentRoom = NULL;
+	this->inventory = NULL;
+}
 Context::Context(Room* startingRoom, Inventory* inventory){
   currentRoom = startingRoom;
   this->inventory = inventory;
@@ -25,37 +29,37 @@ void Context::parseContext(){
 		}
     //check containers in room
 		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
-			for(unsigned int j = 0; j < currentRoom->containers[i].triggers.size(); j++){
+			for(unsigned int j = 0; j < currentRoom->containers[i]->triggers.size(); j++){
 
-				if(currentRoom->containers[i].triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->containers[i].triggers[j]);
+				if(currentRoom->containers[i]->triggers[j].command == ""){
+					nonCommandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
 				}
 				else{
-					commandTriggers.push_back(&currentRoom->containers[i].triggers[j]);
+					commandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
 				}
 			}
 		}
     //check items in room
 		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
-			for(unsigned int j = 0; j < currentRoom->containers[i].triggers.size(); j++){
+			for(unsigned int j = 0; j < currentRoom->containers[i]->triggers.size(); j++){
 
-				if(currentRoom->itemobjs[i].triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->itemobjs[i].triggers[j]);
+				if(currentRoom->items[i]->triggers[j].command == ""){
+					nonCommandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
 				}
 				else{
-					commandTriggers.push_back(&currentRoom->itemobjs[i].triggers[j]);
+					commandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
 				}
 			}
 		}
     //check creatures in room
 		for(unsigned int i = 0; i < currentRoom->creatures.size(); i++){
-			for(unsigned int j = 0; j < currentRoom->creatures[i].triggers.size(); j++){
+			for(unsigned int j = 0; j < currentRoom->creatures[i]->triggers.size(); j++){
 
-				if(currentRoom->creatures[i].triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->creatures[i].triggers[j]);
+				if(currentRoom->creatures[i]->triggers[j].command == ""){
+					nonCommandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
 				}
 				else{
-					commandTriggers.push_back(&currentRoom->creatures[i].triggers[j]);
+					commandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
 				}
 			}
 		}
@@ -68,14 +72,41 @@ void Context::parseContext(){
 
 }
 
-Trigger& Context::checkCommandTriggers(string input){
+Trigger* Context::checkCommandTriggers(string input,void* mymap){
 
+	for(unsigned int i = 0; i < commandTriggers.size(); i++){
+		if(commandTriggers[i]->command == input){
+
+
+			bool isTriggerMet = true;
+			for(unsigned int j = 0; j < commandTriggers[i]->conditions.size(); j ++){
+				if(commandTriggers[i]->conditions[j].IsMet(mymap)== false){
+					isTriggerMet = false;
+				}
+			}
+			if(isTriggerMet == true){
+				return commandTriggers[i];
+			}
+		}
+	}
+	//no triggers are good triggers
+	return NULL;
 
 
 }
 
-Trigger& Context::checkNonCommandTriggers(){
-	//for(unsigned int i = 0; i < commandTriggers.size(); i++){
-
-	//}
+Trigger* Context::checkNonCommandTriggers(void* mymap){
+	for(unsigned int i = 0; i < nonCommandTriggers.size(); i++){
+		bool isTriggerMet = true;
+		for(unsigned int j = 0; j < nonCommandTriggers[i]->conditions.size(); j ++){
+			if(nonCommandTriggers[i]->conditions[j].IsMet(mymap)== false){
+				isTriggerMet = false;
+			}
+		}
+		if(isTriggerMet == true){
+			return nonCommandTriggers[i];
+		}
+	}
+	//no triggers are good triggers
+	return NULL;
 }

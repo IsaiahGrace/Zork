@@ -38,22 +38,40 @@ int main(int argc, char **argv) {
   // Create Player variables
 
   // Context
-  Room* entranceRoom = map.getRoom("Entrance");
-  Context gameContext(entranceRoom, &map.playerInventory);
+
   // ******************************
   // Start the Finite state Machine
   // ******************************
 
-/*
+
   while(1){
 	  //get current context
-	  gameContext.parseContext();
+	  map.gameContext.parseContext();
 
 	  //check context for active noncommand triggers
+	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
+	  if(commandTrigger != NULL){
+		  //TODO: execute trigger
+	  }
+	  else{
+		  //parse the command line
+		  string command;
+		  cout<< "Waiting for command: ";
+		  getline(cin,command);
+
+		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
+		  if(nonCommandTrigger != NULL){
+			  //TODO: execute trigger
+		  }
+		  else{
+			  //Call parseAction
+			  //parseAction should call the action func
+		  }
+	  }
 
 
   }
-*/
+
   /*
    * while(1):
    *

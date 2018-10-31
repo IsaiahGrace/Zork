@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(node) {
+Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(node,mymap) {
   Map* mapptr = static_cast<Map*>(mymap);
   xml_node<> *child = node->first_node();
 
@@ -19,20 +19,12 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
      * and finds if their name was defined
      * if it is, it adds them to the room
      */
-    if(tagName == "item"){
-    	for(unsigned int i = 0; i < mapptr->items.size() ;i++){
-    		std::cout << "RUNNING THROUGH ITEMS:" << mapptr->items[i].name << std::endl;
-      		if(mapptr->items[i].name == child->value()){
-      			std::cout << "Item:" << mapptr->items[i].name << " added to room" << std::endl;
-       			itemobjs.push_back(mapptr->items[i]);
-      		}
-    	}
-    }
-    else if(tagName == "creature"){
+
+    if(tagName == "creature"){
     	for(unsigned int i = 0; i < mapptr->creatures.size();i++){
     		if(mapptr->creatures[i].name == child->value()){
     			std::cout << "Creature:" << mapptr->creatures[i].name << "added to room"<< std::endl;
-    			creatures.push_back(mapptr->creatures[i]);
+    			creatures.push_back(&mapptr->creatures[i]);
     		}
     	}
     }
@@ -40,7 +32,7 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
     	for(unsigned int i = 0; i < mapptr->containers.size();i++){
     		if(mapptr->containers[i].name == child->value()){
     			std::cout << "Container:" << mapptr->containers[i].name << "added to room"<< std::endl;
-    			containers.push_back(mapptr->containers[i]);
+    			containers.push_back(&mapptr->containers[i]);
     		}
     	}
     }

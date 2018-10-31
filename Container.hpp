@@ -9,7 +9,7 @@
 
 class Container : public Base, public Owner {
 public:
-  Container(xml_node<> *node);
+  Container(xml_node<> *node,void* mymap);
   virtual ~Container() {};
 	
   string accept; //The container unlocker

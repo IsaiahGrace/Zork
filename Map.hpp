@@ -9,6 +9,7 @@
 #include "Creature.hpp"
 #include "Inventory.hpp"
 #include "Owner.hpp"
+#include "Context.hpp"
 using namespace std;
 using namespace rapidxml;
 
@@ -30,6 +31,7 @@ public:
   Room* getRoom(string);
   Owner* getOwner(string);
   Item* getItem(string);
+  Context gameContext;
   Inventory playerInventory;
   vector<Room> rooms;
   vector<Item> items;
