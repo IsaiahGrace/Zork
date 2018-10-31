@@ -8,7 +8,7 @@ class Inventory {
 public:
   Inventory() {};
   virtual ~Inventory() {};
-
+  //Might need to be a vector of pointers
   vector<Item> items;
 
   Item* getItem(string itemName); // Retruns a pointer to the item, used as a lookup.

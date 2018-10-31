@@ -21,8 +21,29 @@ Condition::Condition(xml_node<> *node) {
   }
 }
 
-//bool Condition::IsMet(void* mymap){
-//	Map* mapptr = static_cast<Map*>(mymap);
+bool Condition::IsMet(void* mymap){
+	Map* mapptr = static_cast<Map*>(mymap);
 
 
-//}
+	if(owner == "inventory"){
+		if(has == true){
+			//true if object exists, false if does not exist.
+			if(mapptr->playerInventory.getItem(object) == NULL){
+				return false;
+			}
+			return true;
+		}
+		else{
+			//true if object does not exist, false if it does
+			if(mapptr->playerInventory.getItem(object) == NULL){
+				return true;
+			}
+			return false;
+		}
+	}
+
+	//we only get here if owner is not inventory
+	//must check owner objects
+
+
+}
