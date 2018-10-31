@@ -10,6 +10,7 @@ public:
   Condition(xml_node<> *node);
   virtual ~Condition() {};
   bool IsMet(void*);
+  bool StatusMet(void*);
 
   bool has;
   string object;

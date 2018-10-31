@@ -24,7 +24,10 @@ Condition::Condition(xml_node<> *node) {
 bool Condition::IsMet(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);
 
-	//TODO: implement ismet for status != ""
+
+	if(status != ""){
+		return this->StatusMet(mymap);
+	}
 
 	if(owner == "inventory"){
 		if(has == true){
@@ -67,4 +70,13 @@ bool Condition::IsMet(void* mymap){
 		return false;
 	}
 
+}
+
+//TODO: this function
+//get item from map
+//check if it has status
+bool Condition::StatusMet(void* mymap){
+	Map* mapptr = static_cast<Map*>(mymap);
+
+	return false;
 }

@@ -86,3 +86,9 @@ Owner* Map::getOwner(string ownerName){
 	return NULL;
 }
 
+Item* Map::getItem(string itemName){
+	  for (unsigned int i = 0; i < items.size(); i++) {
+		  if(items[i].name == itemName) return &items[i];
+	  }
+	  	  return NULL; // Item not found
+}

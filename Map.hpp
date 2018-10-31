@@ -18,6 +18,7 @@ public:
   virtual ~Map() {};
   Room* getRoom(string);
   Owner* getOwner(string);
+  Item* getItem(string);
   Inventory playerInventory;
   vector<Room> rooms;
   vector<Item> items;
