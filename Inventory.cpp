@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Inventory.hpp"
 
+//I think this is empty, unless you can start with items in your inventory
+
 Item* Inventory::getItem(string itemName) {
   for (unsigned int i = 0; i < items.size(); i++) {
     if(items[i].name == itemName) return &items[i];

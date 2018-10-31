@@ -1,6 +1,6 @@
 #include "Map.hpp"
 #include <iostream>
-
+#include <string>
 
 
 
@@ -45,5 +45,16 @@ Map::Map(FILE *fptr) {
     if(name == "room") rooms.push_back(Room(node,this));
     node = node->next_sibling();
   }
+
+
+}
+
+//returns the room that has same name as argument
+Room Map::getRoom(char* roomname){
+	for(unsigned int i = 0; i < rooms.size(); i++){
+		if(rooms[i].name.compare(roomname) == 0){
+			return rooms[i];
+		}
+	}
 
 }

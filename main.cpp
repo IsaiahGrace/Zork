@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "Map.hpp"
+#include "Inventory.hpp"
+#include "Context.hpp"
 
 using namespace std;
 
@@ -34,21 +36,15 @@ int main(int argc, char **argv) {
   fclose(fptr);
 
   // Create Player variables
+  Inventory playerInventory();
   // Context
 
+
+  //Context gameContext(,&playerInventory);
   // ******************************
   // Start the Finite state Machine
   // ******************************
-  // Get command from the user
-  
-  // Check if command is overriden by a trigger
-  
-  // Execute command if not overridden
-  
-  // Check if command activates a trigger
-  
-  // Execute trigger
-  
+
   /*
    * while(1):
    *
