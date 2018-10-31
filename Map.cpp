@@ -46,7 +46,6 @@ Map::Map(FILE *fptr) {
     node = node->next_sibling();
   }
 
-
 }
 
 //returns the room that has same name as argument
@@ -58,3 +57,5 @@ Room* Map::getRoom(string roomname){
 	}
 	return NULL;
 }
+
+

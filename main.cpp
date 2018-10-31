@@ -36,10 +36,10 @@ int main(int argc, char **argv) {
   fclose(fptr);
 
   // Create Player variables
-  Inventory playerInventory;
+
   // Context
   Room* entranceRoom = map.getRoom("Entrance");
-  Context gameContext(entranceRoom, &playerInventory);
+  Context gameContext(entranceRoom, &map.playerInventory);
   // ******************************
   // Start the Finite state Machine
   // ******************************
