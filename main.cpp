@@ -54,9 +54,19 @@ int main(int argc, char **argv) {
 		  //TODO: execute trigger
 	  }
 	  else{
-		  //scan command
-		  //command is now a string
-		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers("test",&map);
+		  //parse the command line
+		  string command;
+		  cout<< "Waiting for command: ";
+		  getline(cin,command);
+
+		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
+		  if(nonCommandTrigger != NULL){
+			  //TODO: execute trigger
+		  }
+		  else{
+			  //Call parseAction
+			  //parseAction should call the action func
+		  }
 	  }
 
 
