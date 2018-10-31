@@ -17,8 +17,8 @@ public:
   virtual ~Context() {};
 
   void parseContext();
-  Trigger& checkCommandTriggers(string);
-  Trigger& checkNonCommandTriggers();
+  Trigger* checkCommandTriggers(string,void*);
+  Trigger* checkNonCommandTriggers(void*);
 
   //you cannot have a vector of references thanks to their immutability
   //so now it's a vector of pointers!

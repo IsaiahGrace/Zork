@@ -43,16 +43,25 @@ int main(int argc, char **argv) {
   // Start the Finite state Machine
   // ******************************
 
-/*
+
   while(1){
 	  //get current context
-	  gameContext.parseContext();
+	  map.gameContext.parseContext();
 
 	  //check context for active noncommand triggers
+	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
+	  if(commandTrigger != NULL){
+		  //TODO: execute trigger
+	  }
+	  else{
+		  //scan command
+		  //command is now a string
+		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers("test",&map);
+	  }
 
 
   }
-*/
+
   /*
    * while(1):
    *

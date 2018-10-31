@@ -72,14 +72,41 @@ void Context::parseContext(){
 
 }
 
-Trigger& Context::checkCommandTriggers(string input){
+Trigger* Context::checkCommandTriggers(string input,void* mymap){
 
+	for(unsigned int i = 0; i < commandTriggers.size(); i++){
+		if(commandTriggers[i]->command == input){
+
+
+			bool isTriggerMet = true;
+			for(unsigned int j = 0; j < commandTriggers[i]->conditions.size(); j ++){
+				if(commandTriggers[i]->conditions[j].IsMet(mymap)== false){
+					isTriggerMet = false;
+				}
+			}
+			if(isTriggerMet == true){
+				return commandTriggers[i];
+			}
+		}
+	}
+	//no triggers are good triggers
+	return NULL;
 
 
 }
 
-Trigger& Context::checkNonCommandTriggers(){
-	//for(unsigned int i = 0; i < commandTriggers.size(); i++){
-
-	//}
+Trigger* Context::checkNonCommandTriggers(void* mymap){
+	for(unsigned int i = 0; i < nonCommandTriggers.size(); i++){
+		bool isTriggerMet = true;
+		for(unsigned int j = 0; j < nonCommandTriggers[i]->conditions.size(); j ++){
+			if(nonCommandTriggers[i]->conditions[j].IsMet(mymap)== false){
+				isTriggerMet = false;
+			}
+		}
+		if(isTriggerMet == true){
+			return nonCommandTriggers[i];
+		}
+	}
+	//no triggers are good triggers
+	return NULL;
 }
