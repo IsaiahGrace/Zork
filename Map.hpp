@@ -8,6 +8,7 @@
 #include "Container.hpp"
 #include "Creature.hpp"
 #include "inventory.hpp"
+#include "Owner.hpp"
 using namespace std;
 using namespace rapidxml;
 
@@ -16,6 +17,7 @@ public:
   Map(FILE *fptr);
   virtual ~Map() {};
   Room* getRoom(string);
+  Owner* getOwner(string);
   Inventory playerInventory;
   vector<Room> rooms;
   vector<Item> items;

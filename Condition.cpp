@@ -24,6 +24,7 @@ Condition::Condition(xml_node<> *node) {
 bool Condition::IsMet(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);
 
+	//TODO: implement ismet for status != ""
 
 	if(owner == "inventory"){
 		if(has == true){
@@ -45,5 +46,25 @@ bool Condition::IsMet(void* mymap){
 	//we only get here if owner is not inventory
 	//must check owner objects
 
+	Owner* ownerMatch=mapptr->getOwner(owner);
+	if(ownerMatch==NULL){
+		//this shouldn't happen
+		return false;
+	}
+
+	if(has == true){
+		//if item is found, then owner has object
+		if(ownerMatch->FindItem(object) == true){
+			return true;
+		}
+		return false;
+	}
+	else{
+		//if item is not found, owner does not have object
+		if(ownerMatch->FindItem(object) == false){
+			return true;
+		}
+		return false;
+	}
 
 }

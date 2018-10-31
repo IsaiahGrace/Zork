@@ -13,6 +13,7 @@ public:
 	Owner(xml_node<> *node);
 	virtual ~Owner() {};
 
+	bool FindItem(string);
     vector<string> items; //Items contained in the container
 
 };

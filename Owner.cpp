@@ -21,4 +21,9 @@ Owner::Owner(xml_node<> *node){
 
 }
 
-
+bool Owner::FindItem(string itemname){
+	  for (unsigned int i = 0; i < items.size(); i++) {
+	    if(items[i] == itemname) return true;
+	  }
+	  return false; // Item not found
+}

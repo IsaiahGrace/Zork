@@ -69,4 +69,20 @@ Room* Map::getRoom(string roomname){
 	return NULL;
 }
 
+//searches rooms and containers to see if there is a name match, returns ptr if so. If no match, returns NULL
+Owner* Map::getOwner(string ownerName){
+	for(unsigned int i = 0; i < rooms.size(); i++){
+			if(rooms[i].name.compare(ownerName) == 0){
+				return &rooms[i];
+			}
+	}
+
+	for(unsigned int i = 0; i < containers.size(); i++){
+			if(containers[i].name.compare(ownerName) == 0){
+				return &containers[i];
+			}
+	}
+
+	return NULL;
+}
 
