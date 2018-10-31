@@ -1,10 +1,10 @@
 #include "Room.hpp"
 #include "Map.hpp"
-
+#include "Owner.hpp"
 #include <iostream>
 
 
-Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node) {
+Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(node) {
   Map* mapptr = static_cast<Map*>(mymap);
   xml_node<> *child = node->first_node();
 
@@ -24,7 +24,7 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node) {
     		std::cout << "RUNNING THROUGH ITEMS:" << mapptr->items[i].name << std::endl;
       		if(mapptr->items[i].name == child->value()){
       			std::cout << "Item:" << mapptr->items[i].name << " added to room" << std::endl;
-       			items.push_back(mapptr->items[i]);
+       			itemobjs.push_back(mapptr->items[i]);
       		}
     	}
     }

@@ -4,9 +4,10 @@
 #include "rapidxml.hpp"
 #include "Base.hpp"
 #include "Item.hpp"
+#include "Owner.hpp"
 using namespace rapidxml;
 
-Container::Container(xml_node<> *node) : Base::Base(node) {
+Container::Container(xml_node<> *node) : Base::Base(node), Owner::Owner(node) {
   xml_node<> *child = node->first_node();
 
   while(child) {
@@ -14,7 +15,7 @@ Container::Container(xml_node<> *node) : Base::Base(node) {
     std::cout << "Container: " << tagName << std::endl;
     
     if(!tagName.compare("accept")) accept = child->value();
-    else if(!tagName.compare("item")) items.push_back(child->value());
+    //else if(!tagName.compare("item")) items.push_back(child->value());
 
     child = child->next_sibling();
   }

@@ -8,14 +8,15 @@
 #include "Creature.hpp"
 #include "Container.hpp"
 #include "Item.hpp"
+#include "Owner.hpp"
 
-class Room : public Base {
+class Room : public Base, public Owner {
 public:
   Room(rapidxml::xml_node<> *node,void* mymap);
   virtual ~Room() {};
 
   bool isExit;
-  vector<Item> items;
+  vector<Item> itemobjs;
   vector<Border> borders;
   vector<Creature> creatures;
   vector<Container> containers;
