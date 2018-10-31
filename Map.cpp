@@ -41,7 +41,7 @@ Map::Map(FILE *fptr) {
     string name = node->name();
     std::cout <<"Map: " << name << std::endl;
 
-    if(name == "container") containers.push_back(Container(node));
+    if(name == "container") containers.push_back(Container(node,this));
     else if(name == "creature") creatures.push_back(Creature(node));
 
     node = node->next_sibling();

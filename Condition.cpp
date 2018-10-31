@@ -57,14 +57,14 @@ bool Condition::IsMet(void* mymap){
 
 	if(has == true){
 		//if item is found, then owner has object
-		if(ownerMatch->FindItem(object) == true){
+		if(ownerMatch->GetItem(object) != NULL){
 			return true;
 		}
 		return false;
 	}
 	else{
 		//if item is not found, owner does not have object
-		if(ownerMatch->FindItem(object) == false){
+		if(ownerMatch->GetItem(object) == NULL){
 			return true;
 		}
 		return false;

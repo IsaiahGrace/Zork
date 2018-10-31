@@ -17,7 +17,7 @@ public:
 
   bool isExit;
   //might need to be vectors of pointers
-  vector<Item> itemobjs;
+
   vector<Border> borders;
   vector<Creature> creatures;
   vector<Container> containers;

@@ -4,17 +4,18 @@
 #include <string>
 #include <vector>
 #include "rapidxml.hpp"
+#include "Item.hpp"
 using namespace std;
 using namespace rapidxml;
 
 
 class Owner{
 public:
-	Owner(xml_node<> *node);
+	Owner(xml_node<> *node,void* mapptr);
 	virtual ~Owner() {};
 
-	bool FindItem(string);
-    vector<string> items; //Items contained in the container
+	Item* GetItem(string);
+    vector<Item> items; //Items contained in the container
 
 };
 

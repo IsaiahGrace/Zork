@@ -39,11 +39,11 @@ void Context::parseContext(){
 		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
 			for(unsigned int j = 0; j < currentRoom->containers[i].triggers.size(); j++){
 
-				if(currentRoom->itemobjs[i].triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->itemobjs[i].triggers[j]);
+				if(currentRoom->items[i].triggers[j].command == ""){
+					nonCommandTriggers.push_back(&currentRoom->items[i].triggers[j]);
 				}
 				else{
-					commandTriggers.push_back(&currentRoom->itemobjs[i].triggers[j]);
+					commandTriggers.push_back(&currentRoom->items[i].triggers[j]);
 				}
 			}
 		}

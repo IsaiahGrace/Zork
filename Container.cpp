@@ -7,7 +7,7 @@
 #include "Owner.hpp"
 using namespace rapidxml;
 
-Container::Container(xml_node<> *node) : Base::Base(node), Owner::Owner(node) {
+Container::Container(xml_node<> *node,void* mymap) : Base::Base(node), Owner::Owner(node,mymap) {
   xml_node<> *child = node->first_node();
 
   while(child) {
