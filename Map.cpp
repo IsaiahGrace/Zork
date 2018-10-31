@@ -57,6 +57,9 @@ Map::Map(FILE *fptr) {
     node = node->next_sibling();
   }
 
+  gameContext.inventory = &playerInventory;
+  gameContext.currentRoom = this->getRoom("Entrance");
+
 }
 
 //returns the room that has same name as argument

@@ -11,6 +11,7 @@ using namespace rapidxml;
 
 class Owner{
 public:
+	Owner();
 	Owner(xml_node<> *node,void* mapptr);
 	virtual ~Owner() {};
 

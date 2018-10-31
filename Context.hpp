@@ -12,6 +12,7 @@ using namespace std;
 
 class Context {
 public:
+  Context();
   Context(Room* startingRoom, Inventory* inventory);
   virtual ~Context() {};
 

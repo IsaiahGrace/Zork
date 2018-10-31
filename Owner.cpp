@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 
-
+Owner::Owner(){}
 Owner::Owner(xml_node<> *node,void* mymap){
 
 	  Map* mapptr = static_cast<Map*>(mymap);

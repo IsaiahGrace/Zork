@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Inventory.hpp"
 
+Inventory::Inventory(): Owner::Owner(){
 
+}
 
 Item* Inventory::getItem(string itemName) {
   for (unsigned int i = 0; i < items.size(); i++) {

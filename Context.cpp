@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 
+Context::Context(){
+	currentRoom = NULL;
+	this->inventory = NULL;
+}
 Context::Context(Room* startingRoom, Inventory* inventory){
   currentRoom = startingRoom;
   this->inventory = inventory;
