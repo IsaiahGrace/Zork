@@ -77,7 +77,7 @@ bool Condition::IsMet(void* mymap){
 //check if it has status
 bool Condition::StatusMet(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);
-	Item* testitem = mapptr->getItem(object)
+	Item* testitem = mapptr->getItem(object);
 	if(testitem == NULL){
 		//this should never happen
 		return false;
