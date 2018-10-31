@@ -7,7 +7,7 @@
 #include "Item.hpp"
 #include "Container.hpp"
 #include "Creature.hpp"
-#include "inventory.hpp"
+#include "Inventory.hpp"
 #include "Owner.hpp"
 using namespace std;
 using namespace rapidxml;
