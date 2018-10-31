@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-
-
 Map::Map(FILE *fptr) {
   //Determine the .xml file size
   fseek(fptr, 0, SEEK_END);
@@ -91,4 +89,110 @@ Item* Map::getItem(string itemName){
 		  if(items[i].name == itemName) return &items[i];
 	  }
 	  	  return NULL; // Item not found
+}
+
+
+// parseAction command takes an input string and parses it to call other action funcitons.
+// parseAction will print out an Error and not call any funcitons if the action string is not well formed.
+// parseAction will not check to make sure that an action is valid in the current context.
+void Map::parseAction(string input) {
+
+  // Parse actions that have no operands
+  if(input == "n") {
+    map.move("n");
+    return;
+  } 
+  if(input == "s") {
+    map.move("s");
+    return;
+  } 
+  if(input == "e") {
+    map.move("e");
+    return;
+  } 
+  if(input == "w") {
+    map.move("w");
+    return;
+  } 
+  if(input == "i") {
+    map.playerInventory.printInventory();
+    return;
+  } 
+  if(input == "open exit") {
+    map.openExit();
+    return;
+  }
+  
+  // Parse action that have one opperand
+  string action;
+  string target;
+  int breakPos;
+  string container;
+  stirng creature;
+  string item;
+  breakPos = input.find(" ", 0);
+  action = input.substr(0,breakPos);
+  target = input.substr(breakPos,breakPos);
+  if(action == "" || target == "") {
+    std::cout << "Error: Could not split action command into two words" << std::endl;
+    return;
+  }
+
+  if(action == "take") {
+    map.take(target);
+    return;
+  }
+  if(action == "open") {
+    map.open(target);
+    return;
+  }
+  if(action == "read") {
+    map.read(target);
+    return;
+  }
+  if(action == "drop") {
+    map.drop(target);
+    return;
+  }
+  if(action == "put") {
+    // parse target again and pass two strings to map.put()
+    breakPos = target.find(" ",0);    
+    item = target.substr(0,breakPos);
+    breakPos = target.find(" ",breakPos + 1);
+    container = target.substr(breakPos,breakPos);
+    if(item == "" || container == "") {
+      std::cout << "Error: could not parse the opperands of the put command" << std::endl;
+    }
+    map.put(item, container);
+    return;
+  }
+  if(action == "trun") { // target will be "on item". this is the turn on command
+    // parse target again and pass one item to map.turnOn()
+    item = target.substr(3,3);
+    if(item == "") {
+      std::cout << "Error: could not parse the opperand of the turn on command" << std::endl;
+    }
+    map.turnOn(item);
+    return;
+  }
+  if(action == "attack") {
+    // parse target again and pass two strings to map.attack()
+    breakPos = target.find(" ",0);    
+    creature = target.substr(0,breakPos);
+    breakPos = target.find(" ",breakPos + 1);
+    item = target.substr(breakPos,breakPos);
+    if(item == "" || creature == "") {
+      std::cout << "Error: could not parse the opperands of the attack command" << std::endl;
+    }
+    map.put(item, container);
+    return;
+  }
+  std::cout << "Error: could not match action string" << std::endl;
+  return;
+  
+  // Mentioned in docs but we don't have to implement these
+  // add
+  // delete
+  // update
+  // Game Over
 }
