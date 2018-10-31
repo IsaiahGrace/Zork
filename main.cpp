@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
   // Start the Finite state Machine
   // ******************************
 
-
+/*
   while(1){
 	  //get current context
 	  gameContext.parseContext();
@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
 
 
   }
-
+*/
   /*
    * while(1):
    *

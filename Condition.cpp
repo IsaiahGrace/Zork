@@ -1,9 +1,10 @@
 #include "Condition.hpp"
+#include "Map.hpp"
 #include <iostream>
 
 Condition::Condition(xml_node<> *node) {
 	xml_node<> *child = node->first_node();
-
+	status = "";
   while(child) {
     string tagName = child->name();
     std::cout <<"Condition: "<< tagName << std::endl;
@@ -19,3 +20,9 @@ Condition::Condition(xml_node<> *node) {
     child = child->next_sibling();
   }
 }
+
+//bool Condition::IsMet(void* mymap){
+//	Map* mapptr = static_cast<Map*>(mymap);
+
+
+//}

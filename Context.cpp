@@ -68,10 +68,14 @@ void Context::parseContext(){
 
 }
 
-Trigger& checkCommandTriggers(string input){
+Trigger& Context::checkCommandTriggers(string input){
+
+
 
 }
 
-Trigger& checkNonCommandTriggers(){
+Trigger& Context::checkNonCommandTriggers(){
+	//for(unsigned int i = 0; i < commandTriggers.size(); i++){
 
+	//}
 }

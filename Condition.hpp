@@ -9,6 +9,7 @@ class Condition {
 public:
   Condition(xml_node<> *node);
   virtual ~Condition() {};
+  bool IsMet(void*);
 
   bool has;
   string object;

@@ -17,4 +17,7 @@ Trigger::Trigger(xml_node<> *node) {
 		
     child = child->next_sibling();
   }
+
 };
+
+
