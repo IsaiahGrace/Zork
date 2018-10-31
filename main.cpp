@@ -38,8 +38,7 @@ int main(int argc, char **argv) {
   // Create Player variables
 
   // Context
-  Room* entranceRoom = map.getRoom("Entrance");
-  Context gameContext(entranceRoom, &map.playerInventory);
+
   // ******************************
   // Start the Finite state Machine
   // ******************************

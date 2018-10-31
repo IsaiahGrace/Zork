@@ -16,7 +16,7 @@ public:
 	virtual ~Owner() {};
 
 	Item* GetItem(string);
-    vector<Item> items; //Items contained in the container
+    vector<Item*> items; //Items contained in the container
 
 };
 

@@ -20,7 +20,7 @@ Owner::Owner(xml_node<> *node,void* mymap){
 	    		std::cout << "RUNNING THROUGH ITEMS:" << mapptr->items[i].name << std::endl;
 	      		if(mapptr->items[i].name == child->value()){
 	      			std::cout << "Item:" << mapptr->items[i].name << " added to room" << std::endl;
-	       			items.push_back(mapptr->items[i]);
+	       			items.push_back(&mapptr->items[i]);
 	      		}
 	    	}
 	    }
@@ -34,7 +34,7 @@ Owner::Owner(xml_node<> *node,void* mymap){
 
 Item* Owner::GetItem(string itemName){
 	  for (unsigned int i = 0; i < items.size(); i++) {
-	    if(items[i].name == itemName) return &items[i];
+	    if(items[i]->name == itemName) return items[i];
 	  }
 	  return NULL; // Item not found
 }

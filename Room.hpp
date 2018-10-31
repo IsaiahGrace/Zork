@@ -19,8 +19,8 @@ public:
   //might need to be vectors of pointers
 
   vector<Border> borders;
-  vector<Creature> creatures;
-  vector<Container> containers;
+  vector<Creature*> creatures;
+  vector<Container*> containers;
 };
 
 #endif
