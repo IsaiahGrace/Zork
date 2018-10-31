@@ -13,11 +13,15 @@ Trigger::Trigger(xml_node<> *node) {
     if(tagName == "type") type = child->value();
     else if(tagName == "command") command = child->value();
     else if(tagName == "condition") conditions.push_back(Condition(child));
-    else if(tagName == "print") print = child->value();
+    else if(tagName == "print") prints.push_back(child->value());
 		
     child = child->next_sibling();
   }
 
 };
 
+void Trigger::ExecuteTrigger(void* mymap){
 
+
+
+}
