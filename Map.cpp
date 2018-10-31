@@ -91,7 +91,7 @@ Item* Map::getItem(string itemName){
 	  for (unsigned int i = 0; i < items.size(); i++) {
 		  if(items[i].name == itemName) return &items[i];
 	  }
-	  	  return NULL; // Item not found
+	  	  return NULL; // Item not parseAction
 }
 
 
@@ -102,27 +102,27 @@ void Map::parseAction(string input) {
 
   // Parse actions that have no operands
   if(input == "n") {
-    map.move("n");
+    this->move("n");
     return;
   } 
   if(input == "s") {
-    map.move("s");
+    this->move("s");
     return;
   } 
   if(input == "e") {
-    map.move("e");
+    this->move("e");
     return;
   } 
   if(input == "w") {
-    map.move("w");
+    this->move("w");
     return;
   } 
   if(input == "i") {
-    map.playerInventory.printInventory();
+    this->playerInventory.printInventory();
     return;
   } 
   if(input == "open exit") {
-    map.openExit();
+    this->openExit();
     return;
   }
   
@@ -131,7 +131,7 @@ void Map::parseAction(string input) {
   string target;
   int breakPos;
   string container;
-  stirng creature;
+  string creature;
   string item;
   breakPos = input.find(" ", 0);
   action = input.substr(0,breakPos);
@@ -142,23 +142,23 @@ void Map::parseAction(string input) {
   }
 
   if(action == "take") {
-    map.take(target);
+    this->take(target);
     return;
   }
   if(action == "open") {
-    map.open(target);
+    this->open(target);
     return;
   }
   if(action == "read") {
-    map.read(target);
+    this->read(target);
     return;
   }
   if(action == "drop") {
-    map.drop(target);
+    this->drop(target);
     return;
   }
   if(action == "put") {
-    // parse target again and pass two strings to map.put()
+    // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);    
     item = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos + 1);
@@ -166,20 +166,20 @@ void Map::parseAction(string input) {
     if(item == "" || container == "") {
       std::cout << "Error: could not parse the opperands of the put command" << std::endl;
     }
-    map.put(item, container);
+    this->put(item, container);
     return;
   }
   if(action == "trun") { // target will be "on item". this is the turn on command
-    // parse target again and pass one item to map.turnOn()
+    // parse target again and pass one item to this->turnOn()
     item = target.substr(3,3);
     if(item == "") {
       std::cout << "Error: could not parse the opperand of the turn on command" << std::endl;
     }
-    map.turnOn(item);
+    this->turnOn(item);
     return;
   }
   if(action == "attack") {
-    // parse target again and pass two strings to map.attack()
+    // parse target again and pass two strings to this->attack()
     breakPos = target.find(" ",0);    
     creature = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos + 1);
@@ -187,7 +187,7 @@ void Map::parseAction(string input) {
     if(item == "" || creature == "") {
       std::cout << "Error: could not parse the opperands of the attack command" << std::endl;
     }
-    map.put(item, container);
+    this->put(item, container);
     return;
   }
   std::cout << "Error: could not match action string" << std::endl;
