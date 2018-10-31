@@ -17,6 +17,7 @@ public:
   string command;
   vector<Condition> conditions;
   vector<string> prints;
+  vector<string> actions;
 };
 
 #endif

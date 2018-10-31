@@ -14,14 +14,18 @@ Trigger::Trigger(xml_node<> *node) {
     else if(tagName == "command") command = child->value();
     else if(tagName == "condition") conditions.push_back(Condition(child));
     else if(tagName == "print") prints.push_back(child->value());
-		
+    else if(tagName == "action") actions.push_back(child->value());
     child = child->next_sibling();
   }
 
 };
 
 void Trigger::ExecuteTrigger(void* mymap){
-
-
+	for(unsigned int i = 0; i < prints.size(); i++){
+		std::cout << prints[i] << std::endl;
+	}
+	for(unsigned int j = 0; j < actions.size(); j++){
+		//TODO: Execute command
+	}
 
 }
