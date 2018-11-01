@@ -57,6 +57,7 @@ Map::Map(FILE *fptr) {
 
   gameContext.inventory = &playerInventory;
   gameContext.currentRoom = this->getRoom("Entrance");
+  std::cout << gameContext.currentRoom->description << std::endl;
 
 }
 
