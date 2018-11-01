@@ -10,7 +10,7 @@ Attack::Attack(xml_node<> *node) {
 
     if(tagName == "condition") conditions.push_back(Condition(child));
     else if(tagName == "print") print = child->value();
-    else if(tagName == "actions") actions.push_back(child->value());
+    else if(tagName == "action") actions.push_back(child->value());
 
     child = child->next_sibling();
   }
