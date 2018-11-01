@@ -123,9 +123,10 @@ void Map::parseAction(string input) {
         std::cout << "parseAction Error: empty input string" << std::endl;
         return;
     }
-    for(std::string::size_type i = 0; i < input.length(); i++) {
-        input[i] = std::tolower(input[i]);
-    }
+    input[0] = tolower(input[0]);
+    //for(std::string::size_type i = 0; i < input.length(); i++) {
+    //    input[i] = std::tolower(input[i]);
+    //}
   // Parse actions that have no operands
   if(input == "n" || input == "s" || input == "e" || input == "w") {
     this->move(input);
