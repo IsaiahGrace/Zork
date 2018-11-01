@@ -132,3 +132,22 @@ Item* Context::getItem(string itemName){
 
 	return NULL;
 }
+
+Owner* Context::getOwner(string ownerName){
+
+	if(ownerName == "inventory"){
+		return inventory;
+	}
+
+	if(ownerName == "room"){
+		return currentRoom;
+	}
+
+	for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
+			if(currentRoom->containers[i]->name == ownerName){
+				return currentRoom->containers[i];
+			}
+	}
+
+	return NULL;
+}

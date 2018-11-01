@@ -328,6 +328,27 @@ void Map::attack(string creature, string item){
 }
 
 void Map::put(string item, string owner){
+	Item* itemobj = this->gameContext.getItem(item);
+	if(itemobj == NULL){
+		std::cout << "put Error: item does not exist in context" << std::endl;
+		return;
+	}
+
+	Owner* ownerobj = this->gameContext.getOwner(owner);
+	if(ownerobj == NULL){
+		std::cout << "put Error: owner does not exist in context" << std::endl;
+	}
+
+	//TODO: CALL DELETE IN CONTEXT
+
+	ownerobj->items.push_back(itemobj);
 
 }
 
+void Map::drop(string item){
+	this->put(item,"room");
+}
+
+void Map::take(string item){
+	this->put(item,"inventory");
+}
