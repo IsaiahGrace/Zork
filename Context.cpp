@@ -17,57 +17,71 @@ void Context::parseContext(){
 	nonCommandTriggers.clear();
 	commandTriggers.clear();
 
-	//
+	//check room triggers
 	if(currentRoom != NULL){
 		for(unsigned int i = 0; i < currentRoom->triggers.size(); i++){
-			if(currentRoom->triggers[i].command == ""){
-				nonCommandTriggers.push_back(&currentRoom->triggers[i]);
-			}
-			else{
-				commandTriggers.push_back(&currentRoom->triggers[i]);
+			if(currentRoom->triggers[i].type != "used"){
+				if(currentRoom->triggers[i].command == ""){
+					nonCommandTriggers.push_back(&currentRoom->triggers[i]);
+				}
+				else{
+					commandTriggers.push_back(&currentRoom->triggers[i]);
+				}
 			}
 		}
     //check containers in room
 		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
 			for(unsigned int j = 0; j < currentRoom->containers[i]->triggers.size(); j++){
-
-				if(currentRoom->containers[i]->triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
-				}
-				else{
-					commandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
+				if(currentRoom->containers[i]->triggers[j].type != "used"){
+					if(currentRoom->containers[i]->triggers[j].command == ""){
+						nonCommandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
+					}
+					else{
+						commandTriggers.push_back(&currentRoom->containers[i]->triggers[j]);
+					}
 				}
 			}
 		}
     //check items in room
 		for(unsigned int i = 0; i < currentRoom->items.size(); i++){
 			for(unsigned int j = 0; j < currentRoom->items[i]->triggers.size(); j++){
-
-				if(currentRoom->items[i]->triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
-				}
-				else{
-					commandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
+				if(currentRoom->items[i]->triggers[j].type != "used"){
+					if(currentRoom->items[i]->triggers[j].command == ""){
+						nonCommandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
+					}
+					else{
+						commandTriggers.push_back(&currentRoom->items[i]->triggers[j]);
+					}
 				}
 			}
 		}
     //check creatures in room
 		for(unsigned int i = 0; i < currentRoom->creatures.size(); i++){
 			for(unsigned int j = 0; j < currentRoom->creatures[i]->triggers.size(); j++){
-
-				if(currentRoom->creatures[i]->triggers[j].command == ""){
-					nonCommandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
-				}
-				else{
-					commandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
+				if(currentRoom->creatures[i]->triggers[j].type != "used"){
+					if(currentRoom->creatures[i]->triggers[j].command == ""){
+						nonCommandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
+					}
+					else{
+						commandTriggers.push_back(&currentRoom->creatures[i]->triggers[j]);
+					}
 				}
 			}
 		}
 
 	}
   //check items in inventory
-	for(unsigned int i = 0; i < commandTriggers.size(); i++){
-	  cout << "commandTrigger command:" << commandTriggers[i]->command << " object:"<< commandTriggers[i]->conditions[0].object << std::endl;
+	for(unsigned int i = 0; i < inventory->items.size(); i++){
+		for(unsigned int j = 0; j < inventory->items[i]->triggers.size(); j++){
+			if(inventory->items[i]->triggers[j].type != "used"){
+				if(inventory->items[i]->triggers[j].command == ""){
+					nonCommandTriggers.push_back(&inventory->items[i]->triggers[j]);
+				}
+				else{
+					commandTriggers.push_back(&inventory->items[i]->triggers[j]);
+				}
+			}
+		}
 	}
 
 }

@@ -30,4 +30,7 @@ void Trigger::ExecuteTrigger(void* mymap){
 		mapptr->parseAction(actions[j]);
 	}
 
+	if(type == "single"){
+		type = "used";
+	}
 }
