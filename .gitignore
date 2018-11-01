@@ -1,3 +1,7 @@
 a.out
 *~
 Zork
+*#
+.idea
+CMakeLists.txt
+cmake-build-debug
