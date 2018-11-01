@@ -125,6 +125,10 @@ void Map::parseAction(string input) {
     this->openExit();
     return;
   }
+  if(input == "game over") {
+    throw 10;
+    return;
+  }
   
   // Parse action that have one opperand
   string action;
@@ -133,14 +137,18 @@ void Map::parseAction(string input) {
   string container;
   string creature;
   string item;
+  string owner;
+  string status;
   breakPos = input.find(" ", 0);
-  action = input.substr(0,breakPos);
-  target = input.substr(breakPos,breakPos);
-  if(action == "" || target == "") {
+  if(breakPos == -1) {
     std::cout << "Error: Could not split action command into two words" << std::endl;
     return;
   }
 
+  action = input.substr(0,breakPos);
+  target = input.substr(breakPos+1);
+  //std::cout << action << ":" << target << std::endl;
+  
   if(action == "take") {
     this->take(target);
     return;
@@ -157,45 +165,104 @@ void Map::parseAction(string input) {
     this->drop(target);
     return;
   }
+  if(action == "delete") {
+    this->deleteItem(target);
+    return;
+  }  
+  if(action == "turn") { // target will be "on item". this is the turn on command
+    // parse target again and pass one item to this->turnOn()
+    if(target.length() < 3) {
+      std::cout << "Error: could not parse the opperand of the turn on command" << std::endl;
+      return;
+    }
+    item = target.substr(3);
+    this->turnOn(item);
+    return;
+  }  
   if(action == "put") {
     // parse target again and pass two strings to this->put()
-    breakPos = target.find(" ",0);    
+    breakPos = target.find(" ",0);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the first half of put" << std::endl;
+      return;
+    }
     item = target.substr(0,breakPos);
-    breakPos = target.find(" ",breakPos + 1);
-    container = target.substr(breakPos,breakPos);
-    if(item == "" || container == "") {
-      std::cout << "Error: could not parse the opperands of the put command" << std::endl;
+    breakPos = target.find(" ",breakPos+1);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the second half of put" << std::endl;
+      return;
     }
+    container = target.substr(breakPos+1);
     this->put(item, container);
-    return;
-  }
-  if(action == "trun") { // target will be "on item". this is the turn on command
-    // parse target again and pass one item to this->turnOn()
-    item = target.substr(3,3);
-    if(item == "") {
-      std::cout << "Error: could not parse the opperand of the turn on command" << std::endl;
-    }
-    this->turnOn(item);
     return;
   }
   if(action == "attack") {
     // parse target again and pass two strings to this->attack()
-    breakPos = target.find(" ",0);    
+    breakPos = target.find(" ",0);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the first half of attack" << std::endl;
+      return;
+    }
     creature = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos + 1);
-    item = target.substr(breakPos,breakPos);
-    if(item == "" || creature == "") {
-      std::cout << "Error: could not parse the opperands of the attack command" << std::endl;
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the second half of attack" << std::endl;
+      return;
     }
-    this->put(item, container);
+    item = target.substr(breakPos+1);
+    this->attack(creature, item);
+    return;
+  }
+    if(action == "add") {
+    // parse target again and pass two strings to this->put()
+    breakPos = target.find(" ",0);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the first half of add" << std::endl;
+      return;
+    }
+    item = target.substr(0,breakPos);
+    breakPos = target.find(" ",breakPos+1);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the second half of add" << std::endl;
+      return;
+    }
+    owner = target.substr(breakPos+1);
+    this->add(item, owner);
+    return;
+  }
+    if(action == "update") {
+    // parse target again and pass two strings to this->put()
+    breakPos = target.find(" ",0);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the first half of update" << std::endl;
+      return;
+    }
+    item = target.substr(0,breakPos);
+    breakPos = target.find(" ",breakPos+1);
+    if(breakPos == -1) {
+      std::cout << "Error: Could not split the second half of update" << std::endl;
+      return;
+    }
+    status = target.substr(breakPos+1);
+    this->update(item, status);
     return;
   }
   std::cout << "Error: could not match action string" << std::endl;
   return;
-  
-  // Mentioned in docs but we don't have to implement these
-  // add
-  // delete
-  // update
-  // Game Over
 }
+
+// For Debugging purposes
+/*
+void Map::move(string direction) {std::cout << "move:" << direction << std::endl;};
+void Map::openExit() {std::cout << "open exit:" << std::endl;};
+void Map::take(string item) {std::cout << "take:" << item  << std::endl;};
+void Map::open(string container) {std::cout << "open:" << container << std::endl;};
+void Map::read(string item) {std::cout << "read:" << item << std::endl;};
+void Map::drop(string item) {std::cout << "drop:" << item << std::endl;};
+void Map::put(string item, string container) {std::cout << "put:" << item << ":" << container << std::endl;};
+void Map::turnOn(string item) {std::cout << "turnOn:" << item << std::endl;};
+void Map::attack(string creature, string item) {std::cout << "attack:" << creature << ":" << item << std::endl;};
+void Map::add(string item, string owner) {std::cout << "add:" << item << ":" << owner << std::endl;};
+void Map::deleteItem(string item) {std::cout << "delete:" << item << std::endl;};
+void Map::update(string item, string status) {std::cout << "update:" << item << ":" << status << std::endl;};
+*/

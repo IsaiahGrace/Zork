@@ -64,13 +64,13 @@ int main(int argc, char **argv) {
 	  //TODO: execute trigger
 	}
 	else{
-	  //Call parseAction
+	  map.parseAction(command);
 	  //parseAction should call the action func
 	}
       }
     }
   }
-  catch (int 10) {
+  catch (int i) {
     std::cout << "Game Over" << std::endl;
   }
   return EXIT_SUCCESS;

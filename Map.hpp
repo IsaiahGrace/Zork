@@ -28,8 +28,9 @@ public:
   void put(string item, string container);
   void turnOn(string item);
   void attack(string creature, string item);
-  // Game over method throws exception
-  void gameOver();
+  void add(string item, string owner);
+  void deleteItem(string item);
+  void update(string item, string status);
   Room* getRoom(string);
   Owner* getOwner(string);
   Item* getItem(string);
