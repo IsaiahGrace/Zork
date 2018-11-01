@@ -3,7 +3,6 @@
 #include "Map.hpp"
 #include "Inventory.hpp"
 #include "Context.hpp"
-#define RELEASE
 
 using namespace std;
 
