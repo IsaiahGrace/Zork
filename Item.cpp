@@ -3,7 +3,7 @@
 
 Item::Item(xml_node<> *node) : Base::Base(node) {
   xml_node<> *child = node->first_node();
-
+  writing = "";
   while(child) {
     string tagName = child->name();
     std::cout <<"Item: " << tagName << std::endl;

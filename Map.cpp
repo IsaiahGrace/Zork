@@ -444,3 +444,61 @@ Base* Map::getBase(string basename){
 	}
 	return NULL;
 }
+
+void Map::add(string itemname,string ownername){
+
+	//TODO: define this. Can it add creatures/containers to rooms? or does it just add items
+	if(ownername == "inventory"){
+		std::cout << "add Error: cannot add objects to inventory" << std::endl;
+		return;
+	}
+
+	Item* baseobj = this->getItem(itemname);
+	if(baseobj == NULL){
+		std::cout << "add Error: object to be added does not exist" << std::endl;
+		return;
+	}
+
+	Owner* ownerobj = this->getOwner(ownername);
+	if(ownerobj == NULL){
+		std::cout << "add Error: owner does not exist in context" << std::endl;
+		return;
+	}
+
+	ownerobj->items.push_back(baseobj);
+	std::cout << "item successfully added" << std::endl;
+}
+
+void Map::read(string itemname){
+	Item* itemobj = this->playerInventory.getItem(itemname);
+	if(itemobj == NULL){
+		std::cout << "Read Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+
+	if(itemobj->writing == ""){
+		std:: cout << "Nothing written" << std::endl;
+		return;
+	}
+
+	std::cout << itemobj->writing << std::endl;
+}
+
+void Map::open(string containername){
+	Container* containerobj = this->gameContext.getContainer(containername);
+	if(containerobj == NULL){
+		std::cout << "open error: container does not exist in context";
+	}
+
+	std::cout << containerobj->name;
+	unsigned int numitems = containerobj->items.size();
+	if(numitems == 0){
+		std::cout << " is empty." << std::endl;
+		return;
+	}
+	std::cout << " contains";
+	for(unsigned int i = 0; i < numitems; i++){
+		std::cout << " " << containerobj->items[i]->name << "," << std::endl;
+	}
+
+}
