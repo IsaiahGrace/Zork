@@ -6,6 +6,7 @@ Trigger::Trigger(xml_node<> *node) {
   xml_node<> *child = node->first_node();
   //command must be initialized to emptystring to mean no command for context
   command = "";
+  type = "";
   
   while(child) {
     string tagName = child->name();
@@ -32,7 +33,7 @@ void Trigger::ExecuteTrigger(void* mymap){
 		mapptr->parseAction(actions[j]);
 	}
 	std::cout << "Trigger type: " << type << std::endl;
-	if(type == "single"){
+	if(type !="permanent"){
 		type = "used";
 	}
 }
