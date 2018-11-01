@@ -27,10 +27,11 @@ public:
   void drop(string item) {}; // string will be the name of an item. Check context and move item from inventory to room if appropreate
   void put(string item, string container) {}; // move the item from the players inventory to the container if appropreate
   void turnOn(string item) {}; // string will be the name of an item in player's inventory. activate the item if appropreate
-  void attack(string creature, string item) {}; // attack the creature with the item if item is in inventory and creature is in current room
+  void attack(string creature, string item); // attack the creature with the item if item is in inventory and creature is in current room
   Room* getRoom(string);
   Owner* getOwner(string);
   Item* getItem(string);
+  Creature* getCreature(string);
   Context gameContext;
   Inventory playerInventory;
   vector<Room> rooms;

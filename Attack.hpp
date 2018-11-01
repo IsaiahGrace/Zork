@@ -12,7 +12,7 @@ public:
   Attack(xml_node<> *node);
   virtual ~Attack() {};
 
-  vector<string> conditions;
+  vector<Condition> conditions;
   string print;
   vector<string> actions;
 };

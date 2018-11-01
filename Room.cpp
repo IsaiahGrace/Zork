@@ -43,3 +43,10 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
     child = child->next_sibling();
   }
 }
+
+Creature* Room::getCreature(string creatureName){
+	  for (unsigned int i = 0; i < creatures.size(); i++) {
+		  if(creatures[i]->name == creatureName) return creatures[i];
+	  }
+	  	  return NULL; // Item not parseAction
+}

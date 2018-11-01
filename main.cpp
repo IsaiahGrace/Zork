@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 	  //check context for active noncommand triggers
 	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
 	  if(commandTrigger != NULL){
-		  //TODO: execute trigger
+		  commandTrigger->ExecuteTrigger(&map);
 	  }
 	  else{
 		  //parse the command line
@@ -61,10 +61,10 @@ int main(int argc, char **argv) {
 
 		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
 		  if(nonCommandTrigger != NULL){
-			  //TODO: execute trigger
+			  nonCommandTrigger->ExecuteTrigger(&map);
 		  }
 		  else{
-			  //Call parseAction
+			  map.parseAction(command);
 			  //parseAction should call the action func
 		  }
 	  }

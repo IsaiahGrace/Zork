@@ -1,5 +1,6 @@
 #include "Trigger.hpp"
 #include <iostream>
+#include "Map.hpp"
 
 Trigger::Trigger(xml_node<> *node) {
   xml_node<> *child = node->first_node();
@@ -21,11 +22,12 @@ Trigger::Trigger(xml_node<> *node) {
 };
 
 void Trigger::ExecuteTrigger(void* mymap){
+	Map* mapptr = static_cast<Map*>(mymap);
 	for(unsigned int i = 0; i < prints.size(); i++){
 		std::cout << prints[i] << std::endl;
 	}
 	for(unsigned int j = 0; j < actions.size(); j++){
-		//TODO: Execute command
+		mapptr->parseAction(actions[j]);
 	}
 
 }

@@ -8,7 +8,7 @@ Attack::Attack(xml_node<> *node) {
     string tagName = child->name();
     std::cout <<"Attack: "<< tagName << std::endl;
 
-    if(tagName == "condition") conditions.push_back(child->value());
+    if(tagName == "condition") conditions.push_back(Condition(child));
     else if(tagName == "print") print = child->value();
     else if(tagName == "actions") actions.push_back(child->value());
 
