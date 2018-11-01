@@ -118,6 +118,13 @@ Container* Map::getContainer(string containerName){
 // parseAction will not check to make sure that an action is valid in the current context.
 void Map::parseAction(string input) {
 
+    if(input == "") {
+        std::cout << "parseAction Error: empty input string" << std::endl;
+        return;
+    }
+    for(std::string::size_type i = 0; i < input.length(); i++) {
+        input[i] = std::tolower(input[i]);
+    }
   // Parse actions that have no operands
   if(input == "n" || input == "s" || input == "e" || input == "w") {
     this->move(input);
