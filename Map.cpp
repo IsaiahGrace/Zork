@@ -244,7 +244,7 @@ void Map::parseAction(string input) {
     this->add(item, owner);
     return;
   }
-    if(action == "Update") {
+    if(action == "update") {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
