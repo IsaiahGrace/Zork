@@ -373,3 +373,31 @@ void Map::drop(string item){
 void Map::take(string item){
 	this->put(item,"inventory");
 }
+
+void Map::deleteItem(string itemname){
+	for(unsigned int i = 0; i < rooms.size(); i++){
+
+		//checks all items in all containers in each room
+		for(unsigned int j = 0; j < rooms[i].containers.size(); j++){
+			for(unsigned int k = 0; rooms[i].containers[j]->items.size(); k++){
+				if(rooms[i].containers[j]->items[k]->name == itemname){
+					rooms[i].containers[j]->items.erase(rooms[i].containers[j]->items.begin()+k);
+				}
+			}
+		}
+		//checks items in each room
+		for(int q = 0; q < rooms[i].items.size(); q++){
+			if(rooms[i].items[q]->name == itemname){
+				rooms[i].items.erase(rooms[i].items.begin()+q);
+			}
+		}
+	}
+
+	//checks all items in inventory
+	for(unsigned int i = 0; i < playerInventory.items.size(); i++){
+		if(playerInventory.items[i]->name == itemname){
+			playerInventory.items.erase(playerInventory.items.begin() + i);
+		}
+	}
+
+}

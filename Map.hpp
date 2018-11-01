@@ -29,7 +29,7 @@ public:
   void turnOn(string item);
   void attack(string creature, string item);
   void add(string item, string owner){};
-  void deleteItem(string item){};
+  void deleteItem(string item);
   void update(string item, string status){};
   Room* getRoom(string);
   // Game over method throws exception
