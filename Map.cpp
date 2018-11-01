@@ -287,10 +287,17 @@ void Map::move(string direction) {
     int numBorders = this->gameContext.currentRoom->borders.size();
     for(int i = 0; i < numBorders; i++) {
         if (direction[0] == this->gameContext.currentRoom->borders[i].direction[0]) {
-            this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
-            std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
-            std::cout << this->gameContext.currentRoom->description << std::endl;
-            return;
+            Room* potentialRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
+            if(potentialRoom == NULL){
+            	std::cout << "move error: room referenced by border does not exist." << std::endl;
+            	return;
+            }
+            else{
+            	this->gameContext.currentRoom = potentialRoom;
+            	std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
+            	std::cout << this->gameContext.currentRoom->description << std::endl;
+            	return;
+            }
         }
     }
     std::cout << "move Error: unable to find room from direction: " << direction << std::endl;
