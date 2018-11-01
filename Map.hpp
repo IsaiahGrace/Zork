@@ -34,9 +34,11 @@ public:
   Room* getRoom(string);
   // Game over method throws exception
   void gameOver();
+  Base* getBase(string);
   Owner* getOwner(string);
   Item* getItem(string);
   Creature* getCreature(string);
+  Container* getContainer(string);
   Context gameContext;
   Inventory playerInventory;
   vector<Room> rooms;

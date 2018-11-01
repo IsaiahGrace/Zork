@@ -40,8 +40,8 @@ void Context::parseContext(){
 			}
 		}
     //check items in room
-		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
-			for(unsigned int j = 0; j < currentRoom->containers[i]->triggers.size(); j++){
+		for(unsigned int i = 0; i < currentRoom->items.size(); i++){
+			for(unsigned int j = 0; j < currentRoom->items[i]->triggers.size(); j++){
 
 				if(currentRoom->items[i]->triggers[j].command == ""){
 					nonCommandTriggers.push_back(&currentRoom->items[i]->triggers[j]);

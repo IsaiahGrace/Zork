@@ -106,6 +106,13 @@ Creature* Map::getCreature(string creatureName){
 	  	  return NULL; // Item not parseAction
 }
 
+Container* Map::getContainer(string containerName){
+	  for (unsigned int i = 0; i < containers.size(); i++) {
+		  if(containers[i].name == containerName) return &containers[i];
+	  }
+	  	  return NULL; // Item not parseAction
+}
+
 // parseAction command takes an input string and parses it to call other action funcitons.
 // parseAction will print out an Error and not call any funcitons if the action string is not well formed.
 // parseAction will not check to make sure that an action is valid in the current context.
@@ -400,5 +407,39 @@ void Map::deleteItem(string itemname){
 		}
 	}
 
+	std::cout << "items deleted successfully?" << std::endl;
 }
 
+void Map::update(string item, string status){
+	Base* baseobj = this->getBase(item);
+	if(baseobj == NULL){
+		std::cout << "update error: no item to update" << std::endl;
+		return;
+	}
+
+	//baseobj->
+
+}
+
+Base* Map::getBase(string basename){
+	Base* potentialBase = this->getContainer(basename);
+	if(potentialBase != NULL){
+		return potentialBase;
+	}
+
+	potentialBase = this->getCreature(basename);
+	if(potentialBase != NULL){
+		return potentialBase;
+	}
+
+	potentialBase = this->getItem(basename);
+	if(potentialBase != NULL){
+		return potentialBase;
+	}
+
+	potentialBase = this->getRoom(basename);
+	if(potentialBase != NULL){
+		return potentialBase;
+	}
+	return NULL;
+}
