@@ -345,8 +345,9 @@ void Map::attack(string creature, string item){
 			return;
 		}
 	}
-	std::cout << creatureobj->attack.print << std::endl;
 
+	std::cout << creatureobj->attack.print << std::endl;
+	std::cout << "Attack action size: " << creatureobj->attack.actions.size() << std::endl;
 	for(unsigned int i = 0; i < creatureobj->attack.actions.size(); i++){
 		this->parseAction(creatureobj->attack.actions[i]);
 	}

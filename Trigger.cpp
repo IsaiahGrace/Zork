@@ -26,10 +26,12 @@ void Trigger::ExecuteTrigger(void* mymap){
 	for(unsigned int i = 0; i < prints.size(); i++){
 		std::cout << prints[i] << std::endl;
 	}
+	std::cout << "Actions size: " << actions.size() << std::endl;
 	for(unsigned int j = 0; j < actions.size(); j++){
+		std::cout << "Trigger executing action" << actions[j] << std::endl;
 		mapptr->parseAction(actions[j]);
 	}
-
+	std::cout << "Trigger type: " << type << std::endl;
 	if(type == "single"){
 		type = "used";
 	}
