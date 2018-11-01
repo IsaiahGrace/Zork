@@ -365,7 +365,7 @@ void Map::deleteItem(string itemname){
 			}
 		}
 		//checks items in each room
-		for(int q = 0; q < rooms[i].items.size(); q++){
+		for(unsigned int q = 0; q < rooms[i].items.size(); q++){
 			if(rooms[i].items[q]->name == itemname){
 				rooms[i].items.erase(rooms[i].items.begin()+q);
 			}
@@ -380,3 +380,4 @@ void Map::deleteItem(string itemname){
 	}
 
 }
+
