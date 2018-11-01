@@ -66,9 +66,9 @@ void Context::parseContext(){
 
 	}
   //check items in inventory
-	//for(unsigned int i = 0; i < commandTriggers.size(); i++){
-	  //cout << "commandTrigger command:" << commandTriggers[i]->command << std::endl;
-	//}
+	for(unsigned int i = 0; i < commandTriggers.size(); i++){
+	  cout << "commandTrigger command:" << commandTriggers[i]->command << " object:"<< commandTriggers[i]->conditions[0].object << std::endl;
+	}
 
 }
 

@@ -77,12 +77,14 @@ bool Condition::IsMet(void* mymap){
 //check if it has status
 bool Condition::StatusMet(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);
-	Item* testitem = mapptr->getItem(object);
-	if(testitem == NULL){
+	Base* testbase = mapptr->getBase(object);
+	if(testbase == NULL){
+		std::cout << "ConditionStatus Error: item does not exist" << std::endl;
 		//this should never happen
 		return false;
 	}
-	if(testitem->status == status){
+	std::cout << "ConditionStatus item status is: " << testbase->status << std::endl;
+	if(testbase->status == status){
 		return true;
 	}
 

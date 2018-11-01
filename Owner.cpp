@@ -17,9 +17,9 @@ Owner::Owner(xml_node<> *node,void* mymap){
 
 	    if(tagName == "item"){
 	    	for(unsigned int i = 0; i < mapptr->items.size() ;i++){
-	    		std::cout << "RUNNING THROUGH ITEMS:" << mapptr->items[i].name << std::endl;
+
 	      		if(mapptr->items[i].name == child->value()){
-	      			std::cout << "Item:" << mapptr->items[i].name << " added to room" << std::endl;
+	      			std::cout << "Item:" << mapptr->items[i].name << " added to container" << std::endl;
 	       			items.push_back(&mapptr->items[i]);
 	      		}
 	    	}
