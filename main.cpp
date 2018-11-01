@@ -13,12 +13,12 @@ using namespace std;
 
 int main(int argc, char **argv) {
   // main method broken down into tasks
-  // 1. Initilization of the game
+  // 1. Initialization of the game
   // 2. Finite State Machine (Running the game)
   // 3. Cleanup after end of game
 
   // ******************
-  // Game Initilization
+  // Game Initialization
   // ******************
   if(argc != 2) {
     cout << "Error, please specify one .xml map file (argc != 2)" << endl;
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 	  else{
 		  //parse the command line
 		  string command;
-		  cout<< "Waiting for command: ";
+		  cout<< ">";
 		  getline(cin,command);
 
 		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);

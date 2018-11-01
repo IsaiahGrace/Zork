@@ -19,12 +19,12 @@ public:
   virtual ~Map() {};
   void parseAction(string);
   // Action methods (need implimentation) REMOVE {}
-  void move(string direction) {};
-  void openExit() {};
-  void take(string item);
+  void move(string direction);
+  void openExit();
+  void take(string item) {};
   void open(string container) {};
   void read(string item) {};
-  void drop(string item);
+  void drop(string item) {};
   void put(string item, string container);
   void turnOn(string item);
   void attack(string creature, string item);
