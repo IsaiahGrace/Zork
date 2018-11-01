@@ -24,8 +24,9 @@ Map::Map(FILE *fptr) {
   //THREE loops now. First loop initializes items, second initializes non room objects, third does rooms
   while(node) {
     string name = node->name();
+    #ifndef RELEASE
     std::cout <<"Map: " << name << std::endl;
-
+    #endif
     //if(name == "room") rooms.push_back(Room(node));
     if(name == "item") items.push_back(Item(node));
     //else if(name == "container") containers.push_back(Container(node));
@@ -37,8 +38,9 @@ Map::Map(FILE *fptr) {
   node = doc.first_node()->first_node();
   while(node) {
     string name = node->name();
+    #ifndef RELEASE
     std::cout <<"Map: " << name << std::endl;
-
+    #endif
     if(name == "container") containers.push_back(Container(node,this));
     else if(name == "creature") creatures.push_back(Creature(node));
 
@@ -48,8 +50,9 @@ Map::Map(FILE *fptr) {
   node = doc.first_node()->first_node();
   while(node) {
     string name = node->name();
+    #ifndef RELEASE
     std::cout <<"Map: " << name << std::endl;
-
+    #endif
 
     if(name == "room") rooms.push_back(Room(node,this));
     node = node->next_sibling();
@@ -120,7 +123,12 @@ Container* Map::getContainer(string containerName){
 void Map::parseAction(string input) {
 
     if(input == "") {
+    #ifndef RELEASE
         std::cout << "parseAction Error: empty input string" << std::endl;
+    #endif
+    #ifdef RELEASE
+        std::cout << "Error" << std::endl;
+    #endif
         return;
     }
     input[0] = tolower(input[0]);
@@ -156,13 +164,22 @@ void Map::parseAction(string input) {
   string status;
   breakPos = input.find(" ", 0);
   if(breakPos == -1) {
-    std::cout << "parseAction Error: Could not split action command into two words" << std::endl;
+    #ifndef RELEASE
+      std::cout << "parseAction Error: Could not split action command into two words" << std::endl;
+    #endif
+    #ifdef RELEASE
+        std::cout << "Error" << std::endl;
+    #endif
+
+
     return;
   }
 
   action = input.substr(0,breakPos);
   target = input.substr(breakPos+1);
-  //std::cout << action << ":" << target << std::endl;
+    #ifndef RELEASE
+    std::cout << action << ":" << target << std::endl;
+    #endif
 
   if(action == "take") {
     this->take(target);
@@ -187,8 +204,13 @@ void Map::parseAction(string input) {
   if(action == "turn") { // target wil be "on item". this is the turn on command
     // parse target again and pass one item to this->turnOn()
     if(target.length() < 3) {
-      std::cout << "parseAction Error: could not parse the opperand of the turn on command" << std::endl;
-      return;
+        #ifndef RELEASE
+        std::cout << "parseAction Error: could not parse the opperand of the turn on command" << std::endl;
+        #endif
+        #ifdef RELEASE
+        std::cout << "Error" << std::endl;
+        #endif
+        return;
     }
     item = target.substr(3);
     this->turnOn(item);
@@ -198,14 +220,26 @@ void Map::parseAction(string input) {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the first half of put" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     item = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos+1);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the second half of put" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     container = target.substr(breakPos+1);
     this->put(item, container);
@@ -215,8 +249,13 @@ void Map::parseAction(string input) {
     // parse target again and pass two strings to this->attack()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the first half of attack" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+        return;
     }
     creature = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos + 1);
@@ -232,14 +271,26 @@ void Map::parseAction(string input) {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the first half of add" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     item = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos+1);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the second half of add" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     owner = target.substr(breakPos+1);
     this->add(item, owner);
@@ -249,21 +300,39 @@ void Map::parseAction(string input) {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the first half of update" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     item = target.substr(0,breakPos);
     breakPos = target.find(" ",breakPos+1);
     if(breakPos == -1) {
+#ifndef RELEASE
       std::cout << "parseAction Error: Could not split the second half of update" << std::endl;
-      return;
+#endif
+#ifdef RELEASE
+        std::cout << "Error" << std::endl;
+#endif
+
+        return;
     }
     status = target.substr(breakPos+1);
     this->update(item, status);
     return;
   }
+#ifndef RELEASE
   std::cout << "parseAction Error: could not match action string: " << input << std::endl;
-  return;
+#endif
+#ifdef RELEASE
+    std::cout << "Error" << std::endl;
+#endif
+
+    return;
 }
 
 // For Debugging purposes
@@ -287,12 +356,20 @@ void Map::move(string direction) {
     for(int i = 0; i < numBorders; i++) {
         if (direction[0] == this->gameContext.currentRoom->borders[i].direction[0]) {
             this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
+#ifndef RELEASE
             std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
+#endif
             std::cout << this->gameContext.currentRoom->description << std::endl;
             return;
         }
     }
+#ifndef RELEASE
     std::cout << "move Error: unable to find room from direction: " << direction << std::endl;
+#endif
+#ifdef RELEASE
+    std::cout << "Error" << std::endl;
+#endif
+
     return;
 }
 
@@ -300,17 +377,24 @@ void Map::openExit() {
     if (this->gameContext.currentRoom->isExit) {
         throw 10;
     }
+#ifndef RELEASE
     std::cout << "openExit Error: currentRoom is not an exit room" << std::endl;
+#endif
+
 }
 
 void Map::turnOn(string item){
 	Item* itemobj = this->playerInventory.GetItem(item);
 	if(itemobj == NULL){
+#ifndef RELEASE
 		std::cout << "turnon Error: item does not exist in inventory" << std::endl;
+#endif
 		return;
 	}
 	if(itemobj->turnOn.size() == 0){
+#ifndef RELEASE
 		std::cout << "turnon Error: item has no object" << std::endl;
+#endif
 		return;
 	}
 	std::cout << itemobj->turnOn[0].printText << std::endl;
@@ -324,18 +408,30 @@ void Map::turnOn(string item){
 void Map::attack(string creature, string item){
 	Item* itemobj = this->playerInventory.GetItem(item);
 	if(itemobj == NULL){
+#ifndef RELEASE
 		std::cout << "Attack Error: item does not exist in inventory" << std::endl;
+#endif
+#ifdef RELEASE
+		std::cout << "You don't have that item in your inventory" << std::endl;
+#endif
 		return;
 	}
 
 	Creature* creatureobj = this->gameContext.currentRoom->getCreature(creature);
 	if(creatureobj == NULL){
+#ifndef RELEASE
 		std::cout << "Attack Error: creature does not exist in room" << std::endl;
+#endif
 		return;
 	}
 
 	if(creatureobj->vulnerability != item){
+#ifndef RELEASE
 		std::cout << "Attack Error: vulnerability does not match item" << std::endl;
+#endif
+#ifdef RELEASE
+		std::cout << "The attack was not very successful" << std::endl;
+#endif
 	}
 
 
@@ -403,6 +499,14 @@ void Map::deleteItem(string itemname){
 			playerInventory.items.erase(playerInventory.items.begin() + i);
 		}
 	}
+	// Search room names
+	if (this->gameContext.currentRoom->name != itemname) {
+        for (unsigned int i = 0; i < this->rooms.size(); i++) {
+            if (itemname == this->rooms[i].name) {
+                this->rooms.erase(this->rooms.begin() + i);
+            }
+        }
+    }
 	//std::cout << "items deleted successfully?" << std::endl;
 }
 
