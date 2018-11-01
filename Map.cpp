@@ -206,6 +206,24 @@ void Map::parseAction(string input) {
   // Game Over
 }
 
+void Map::turnOn(string item){
+	Item* itemobj = this->playerInventory.GetItem(item);
+	if(itemobj == NULL){
+		std::cout << "turnon Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+	if(itemobj->turnOn.size() == 0){
+		std::cout << "turnon Error: item has no object" << std::endl;
+		return;
+	}
+	std::cout << itemobj->turnOn[0].printText << std::endl;
+
+	for(unsigned int i = 0; i < itemobj->turnOn[0].action.size(); i++){
+		this->parseAction(itemobj->turnOn[0].action[i]);
+	}
+	return;
+}
+
 void Map::attack(string creature, string item){
 	Item* itemobj = this->playerInventory.GetItem(item);
 	if(itemobj == NULL){

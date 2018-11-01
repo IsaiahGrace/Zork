@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
   }
 
   }
-  catch (int 10) {
+  catch (int i) {
   std::cout << "Game Over" << std::endl;
   return EXIT_SUCCESS;
   }

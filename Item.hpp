@@ -12,7 +12,7 @@ public:
   virtual ~Item() { };
 
   string writing;
-  TurnOn turnOn;
+  vector<TurnOn> turnOn;
 };
 
 #endif

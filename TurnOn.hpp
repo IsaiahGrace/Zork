@@ -2,6 +2,7 @@
 #define TURNON_HPP
 
 #include <string>
+#include <vector>
 #include "rapidxml.hpp"
 using namespace std;
 using namespace rapidxml;
@@ -13,7 +14,7 @@ public:
   virtual ~TurnOn() {};
 
   string printText;
-  string action;
+  vector<string> action;
 };
 
 #endif
