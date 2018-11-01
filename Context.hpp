@@ -27,10 +27,10 @@ public:
   vector<Trigger*> commandTriggers;
   vector<Trigger*> nonCommandTriggers;
 
-  // currentRoom needs to be a pointer because it will change and refrences cannot be changed
+  // currentRoom needs to be a pointer because it will change and references cannot be changed
   Room* currentRoom = NULL;
-  // I tried to make inventory a refrence, because it never changes.
-  // but I can't get the refrence initilization syntax to work at all... So I'ts a pointer.
+  // I tried to make inventory a reference, because it never changes.
+  // but I can't get the reference initialization syntax to work at all... So I'ts a pointer.
   Inventory* inventory = NULL;
 
 };

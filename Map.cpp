@@ -277,6 +277,27 @@ void Map::add(string item, string owner) {std::cout << "add:" << item << ":" << 
 void Map::deleteItem(string item) {std::cout << "delete:" << item << std::endl;};
 void Map::update(string item, string status) {std::cout << "update:" << item << ":" << status << std::endl;};
 */
+
+void Map::move(string direction) {
+    int numBorders = this->gameContext.currentRoom->borders.size();
+    for(int i = 0; i < numBorders; i++) {
+        if (direction == this->gameContext.currentRoom->borders[i].direction) {
+            this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
+            std::cout << "moved " << direction << "to :" << this->gameContext.currentRoom->name << std::endl;
+            return;
+        }
+    }
+    std::cout << "Error: unable to find room from direction: " << direction << std::endl;
+    return;
+}
+
+void Map::openExit() {
+    if (this->gameContext.currentRoom->isExit) {
+        throw 10;
+    }
+    std::cout << "Error: currentRoom is not an exit room" << std::endl;
+}
+
 void Map::turnOn(string item){
 	Item* itemobj = this->playerInventory.GetItem(item);
 	if(itemobj == NULL){

@@ -19,8 +19,8 @@ public:
   virtual ~Map() {};
   void parseAction(string);
   // Action methods (need implimentation) REMOVE {}
-  void move(string direction) {};
-  void openExit() {};
+  void move(string direction);
+  void openExit();
   void take(string item);
   void open(string container) {};
   void read(string item) {};
