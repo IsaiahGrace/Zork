@@ -43,59 +43,35 @@ int main(int argc, char **argv) {
   // Start the Finite state Machine
   // ******************************
 
+  try {
+    while(1){
+      //get current context
+      map.gameContext.parseContext();
 
-  while(1){
-	  //get current context
-	  map.gameContext.parseContext();
+      //check context for active noncommand triggers
+      Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
+      if(commandTrigger != NULL){
+	//TODO: execute trigger
+      }
+      else{
+	//parse the command line
+	string command;
+	cout<< "Waiting for command: ";
+	getline(cin,command);
 
-	  //check context for active noncommand triggers
-	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
-	  if(commandTrigger != NULL){
-		  //TODO: execute trigger
-	  }
-	  else{
-		  //parse the command line
-		  string command;
-		  cout<< "Waiting for command: ";
-		  getline(cin,command);
-
-		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
-		  if(nonCommandTrigger != NULL){
-			  //TODO: execute trigger
-		  }
-		  else{
-			  //Call parseAction
-			  //parseAction should call the action func
-		  }
-	  }
-
-
+	Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
+	if(nonCommandTrigger != NULL){
+	  //TODO: execute trigger
+	}
+	else{
+	  //Call parseAction
+	  //parseAction should call the action func
+	}
+      }
+    }
   }
-
-  /*
-   * while(1):
-   *
-   * 	#check context for active triggers
-   * 	if trigger condition is met:
-   * 		#execute trigger
-   *
-   * 	else:
-   * 		#scan command
-   *		command must be parsed at this point and placed into a string
-   *
-   *
-   * 		if context.checkCommandTriggers(string):
-   * 			#execute override command
-   * 		else:
-   * 			#execute regular command by calling execute(string)
-   *
-   *
-   */
-
-  // *************************
-  // cleanup after end of game
-  // *************************
-  // Free memory used
-
+  catch (int 10) {
+    std::cout << "Game Over" << std::endl;
+  }
   return EXIT_SUCCESS;
 }
