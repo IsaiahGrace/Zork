@@ -140,7 +140,7 @@ void Map::parseAction(string input) {
     this->openExit();
     return;
   }
-  if(input == "game over") {
+  if(input == "game over" || input == "game Over") {
     throw 10;
     return;
   }
