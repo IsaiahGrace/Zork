@@ -363,7 +363,7 @@ void Map::put(string item, string owner){
 	if(ownerobj == NULL){
 		std::cout << "put Error: owner does not exist in context" << std::endl;
 	}
-	//this->deleteItem(item);
+	this->deleteItem(item);
 
 	ownerobj->items.push_back(itemobj);
 }
@@ -381,7 +381,7 @@ void Map::deleteItem(string itemname){
 
 		//checks all items in all containers in each room
 		for(unsigned int j = 0; j < rooms[i].containers.size(); j++){
-			for(unsigned int k = 0; rooms[i].containers[j]->items.size(); k++){
+			for(unsigned int k = 0; k < rooms[i].containers[j]->items.size(); k++){
 				if(rooms[i].containers[j]->items[k]->name == itemname){
 					rooms[i].containers[j]->items.erase(rooms[i].containers[j]->items.begin()+k);
 				}
