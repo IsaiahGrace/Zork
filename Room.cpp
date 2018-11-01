@@ -53,7 +53,9 @@ Creature* Room::getCreature(string creatureName){
 
 Item* Room::getItem(string itemName) {
   for (unsigned int i = 0; i < items.size(); i++) {
-    if(items[i]->name == itemName) return items[i];
+    if(items[i]->name == itemName){
+    	return items[i];
+    }
   }
   return NULL; // Item not found
 }

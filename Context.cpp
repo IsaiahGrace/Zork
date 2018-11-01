@@ -71,6 +71,7 @@ void Context::parseContext(){
 
 	}
   //check items in inventory
+
 	for(unsigned int i = 0; i < inventory->items.size(); i++){
 		for(unsigned int j = 0; j < inventory->items[i]->triggers.size(); j++){
 			if(inventory->items[i]->triggers[j].type != "used"){
@@ -134,6 +135,7 @@ Item* Context::getItem(string itemName){
 
 	potentialItem = this->currentRoom->GetItem(itemName);
 	if(potentialItem != NULL){
+
 		return potentialItem;
 	}
 
