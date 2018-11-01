@@ -118,10 +118,17 @@ Item* Context::getItem(string itemName){
 		return potentialItem;
 	}
 
-	//potentialItem = this->
+	potentialItem = this->currentRoom->GetItem(itemName);
+	if(potentialItem != NULL){
+		return potentialItem;
+	}
 
-	//check all owners
-
+	for(unsigned int i = 0; i < this->currentRoom->containers.size(); i++){
+		potentialItem = this->currentRoom->containers[i]->GetItem(itemName);
+		if(potentialItem != NULL){
+			return potentialItem;
+		}
+	}
 
 	return NULL;
 }

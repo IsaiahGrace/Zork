@@ -20,3 +20,14 @@ Container::Container(xml_node<> *node,void* mymap) : Base::Base(node), Owner::Ow
     child = child->next_sibling();
   }
 }
+
+Item* Container::getItem(string itemName) {
+	if(status == "locked"){
+		return NULL;
+	}
+
+  for (unsigned int i = 0; i < items.size(); i++) {
+    if(items[i]->name == itemName) return items[i];
+  }
+  return NULL; // Item not found
+}
