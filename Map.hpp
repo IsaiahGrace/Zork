@@ -25,7 +25,7 @@ public:
   void open(string container) {};
   void read(string item) {};
   void drop(string item) {};
-  void put(string item, string container) {};
+  void put(string item, string container);
   void turnOn(string item);
   void attack(string creature, string item);
   void add(string item, string owner);
@@ -34,7 +34,7 @@ public:
   Room* getRoom(string);
   // Game over method throws exception
   void gameOver();
-  Room* getRoom(string);
+    Room* getRoom(string);
   Owner* getOwner(string);
   Item* getItem(string);
   Creature* getCreature(string);

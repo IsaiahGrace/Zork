@@ -68,10 +68,13 @@ int main(int argc, char **argv) {
 			  //parseAction should call the action func
 		  }
 	  }
+
+
   }
+
   }
-    catch (int i) {
-      std::cout << "Game Over" << std::endl;
-      return EXIT_SUCCESS;
-    }
+  catch (int i) {
+  std::cout << "Game Over" << std::endl;
+  return EXIT_SUCCESS;
+  }
 }

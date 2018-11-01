@@ -110,3 +110,18 @@ Trigger* Context::checkNonCommandTriggers(void* mymap){
 	//no triggers are good triggers
 	return NULL;
 }
+
+Item* Context::getItem(string itemName){
+
+	Item* potentialItem = this->inventory->GetItem(itemName);
+	if(potentialItem != NULL){
+		return potentialItem;
+	}
+
+	//potentialItem = this->
+
+	//check all owners
+
+
+	return NULL;
+}

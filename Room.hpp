@@ -15,6 +15,7 @@ public:
   Room(rapidxml::xml_node<> *node,void* mymap);
   virtual ~Room() {};
 
+  Item* getItem(string);
   Creature* getCreature(string);
   bool isExit;
   //might need to be vectors of pointers

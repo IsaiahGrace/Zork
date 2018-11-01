@@ -72,6 +72,11 @@ Room* Map::getRoom(string roomname){
 
 //searches rooms and containers to see if there is a name match, returns ptr if so. If no match, returns NULL
 Owner* Map::getOwner(string ownerName){
+
+	if(ownerName == "inventory"){
+		return &playerInventory;
+	}
+
 	for(unsigned int i = 0; i < rooms.size(); i++){
 			if(rooms[i].name.compare(ownerName) == 0){
 				return &rooms[i];
@@ -272,6 +277,60 @@ void Map::add(string item, string owner) {std::cout << "add:" << item << ":" << 
 void Map::deleteItem(string item) {std::cout << "delete:" << item << std::endl;};
 void Map::update(string item, string status) {std::cout << "update:" << item << ":" << status << std::endl;};
 */
+void Map::turnOn(string item){
+	Item* itemobj = this->playerInventory.GetItem(item);
+	if(itemobj == NULL){
+		std::cout << "turnon Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+	if(itemobj->turnOn.size() == 0){
+		std::cout << "turnon Error: item has no object" << std::endl;
+		return;
+	}
+	std::cout << itemobj->turnOn[0].printText << std::endl;
+
+	for(unsigned int i = 0; i < itemobj->turnOn[0].action.size(); i++){
+		this->parseAction(itemobj->turnOn[0].action[i]);
+	}
+	return;
+}
+
+void Map::attack(string creature, string item){
+	Item* itemobj = this->playerInventory.GetItem(item);
+	if(itemobj == NULL){
+		std::cout << "Attack Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+
+	Creature* creatureobj = this->gameContext.currentRoom->getCreature(creature);
+	if(creatureobj == NULL){
+		std::cout << "Attack Error: creature does not exist in room" << std::endl;
+		return;
+	}
+
+	if(creatureobj->vulnerability != item){
+		std::cout << "Attack Error: vulnerability does not match item" << std::endl;
+	}
+
+
+	for(unsigned int i = 0; i < creatureobj->attack.conditions.size();i++){
+		if(creatureobj->attack.conditions[i].IsMet(this) == false){
+			std::cout << "Attack Error: not all conditions met" << std::endl;
+			return;
+		}
+	}
+	std::cout << creatureobj->attack.print << std::endl;
+
+	for(unsigned int i = 0; i < creatureobj->attack.actions.size(); i++){
+		this->parseAction(creatureobj->attack.actions[i]);
+	}
+	return;
+}
+
+void Map::put(string item, string owner){
+
+}
+
 void Map::turnOn(string item){
 	Item* itemobj = this->playerInventory.GetItem(item);
 	if(itemobj == NULL){
