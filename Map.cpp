@@ -403,8 +403,7 @@ void Map::deleteItem(string itemname){
 			playerInventory.items.erase(playerInventory.items.begin() + i);
 		}
 	}
-
-	std::cout << "items deleted successfully?" << std::endl;
+	//std::cout << "items deleted successfully?" << std::endl;
 }
 
 void Map::update(string item, string status){
