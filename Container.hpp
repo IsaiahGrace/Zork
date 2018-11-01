@@ -12,7 +12,7 @@ public:
   Container(xml_node<> *node,void* mymap);
   virtual ~Container() {};
 	
-  Item* getItem(string);
+  Item* GetItem(string);
   string accept; //The container unlocker
   //vector<string> items; //Items contained in the container
 };

@@ -69,6 +69,21 @@ void Context::parseContext(){
 			}
 		}
 
+		//check items in containers in rooms
+		for(unsigned int i = 0; i < currentRoom->containers.size(); i++){
+			if(currentRoom->containers[i]->status != "locked"){
+				for(unsigned int j = 0; j < currentRoom->containers[i]->items.size(); j++){
+					for(unsigned int k = 0; k < currentRoom->containers[i]->items[j]->triggers.size(); k++){
+						if(currentRoom->containers[i]->items[j]->triggers[k].command == ""){
+							nonCommandTriggers.push_back(&currentRoom->containers[i]->items[j]->triggers[k]);
+						}
+						else{
+							commandTriggers.push_back(&currentRoom->containers[i]->items[j]->triggers[k]);
+						}
+					}
+				}
+			}
+		}
 	}
   //check items in inventory
 

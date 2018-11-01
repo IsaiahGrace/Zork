@@ -15,7 +15,7 @@ public:
 	Owner(xml_node<> *node,void* mapptr);
 	virtual ~Owner() {};
 
-	Item* GetItem(string);
+	virtual Item* GetItem(string);
     vector<Item*> items; //Items contained in the container
 
 };

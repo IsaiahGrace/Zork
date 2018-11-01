@@ -20,7 +20,7 @@ Trigger::Trigger(xml_node<> *node) {
     child = child->next_sibling();
   }
 
-};
+};//d
 
 void Trigger::ExecuteTrigger(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+
 Map::Map(FILE *fptr) {
   //Determine the .xml file size
   fseek(fptr, 0, SEEK_END);
@@ -495,5 +496,5 @@ void Map::open(string containername){
 	for(unsigned int i = 0; i < numitems; i++){
 		std::cout << " " << containerobj->items[i]->name << "," << std::endl;
 	}
-
+	containerobj->status = "unlocked";
 }
