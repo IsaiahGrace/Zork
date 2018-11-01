@@ -417,7 +417,7 @@ void Map::update(string item, string status){
 		return;
 	}
 
-	//baseobj->
+	baseobj->status = status;
 
 }
 
