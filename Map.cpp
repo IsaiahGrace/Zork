@@ -356,14 +356,6 @@ void Map::move(string direction) {
     int numBorders = this->gameContext.currentRoom->borders.size();
     for(int i = 0; i < numBorders; i++) {
         if (direction[0] == this->gameContext.currentRoom->borders[i].direction[0]) {
-<<<<<<< HEAD
-            this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
-#ifndef RELEASE
-            std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
-#endif
-            std::cout << this->gameContext.currentRoom->description << std::endl;
-            return;
-=======
             Room* potentialRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
             if(potentialRoom == NULL){
             	std::cout << "move error: room referenced by border does not exist." << std::endl;
@@ -371,11 +363,12 @@ void Map::move(string direction) {
             }
             else{
             	this->gameContext.currentRoom = potentialRoom;
-            	std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
-            	std::cout << this->gameContext.currentRoom->description << std::endl;
+#ifndef RELEASE
+                std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
+#endif
+                std::cout << this->gameContext.currentRoom->description << std::endl;
             	return;
             }
->>>>>>> ac7f3a9eaa4fb7b3455fa9bcc88f965f6cadb14d
         }
     }
 #ifndef RELEASE
