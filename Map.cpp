@@ -283,6 +283,7 @@ void Map::move(string direction) {
     for(int i = 0; i < numBorders; i++) {
         if (direction == this->gameContext.currentRoom->borders[i].direction) {
             this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
+            std::cout << "moved " << direction << "to :" << this->gameContext.currentRoom->name << std::endl;
             return;
         }
     }
