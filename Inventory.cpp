@@ -13,13 +13,17 @@ Item* Inventory::getItem(string itemName) {
 }
 
 void Inventory::printInventory() {
-  if(items.size()) {
-    for (unsigned int i = 0; i < items.size(); i++) {
+  if(items.size() == 1) {
+    std::cout << items[0]->name << std::endl;
+    return;
+  }
+  if(items.size() > 1) {
+    for (unsigned int i = 0; i < items.size()-1; i++) {
       std::cout << items[i]->name << ", ";
     }
-    std::cout << std::endl;
-  } else {
-    std::cout << "Inventory: empty" << std::endl;
+    std::cout << items[items.size()-1]->name << std::endl;
+    return;
   }
+  std::cout << "Inventory: empty" << std::endl;
+  return;
 }
-    
