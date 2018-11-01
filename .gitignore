@@ -6,3 +6,7 @@ Zork
 /.project
 /mysample.xml
 /.cproject
+*#
+.idea
+CMakeLists.txt
+cmake-build-debug
