@@ -248,7 +248,7 @@ void Map::parseAction(string input) {
     this->add(item, owner);
     return;
   }
-    if(action == "update") {
+    if(action == "Update") {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
     if(breakPos == -1) {
@@ -265,7 +265,7 @@ void Map::parseAction(string input) {
     this->update(item, status);
     return;
   }
-  std::cout << "Error: could not match action string" << std::endl;
+  std::cout << "Error: could not match action string: " << input << std::endl;
   return;
 }
 
@@ -288,9 +288,10 @@ void Map::update(string item, string status) {std::cout << "update:" << item << 
 void Map::move(string direction) {
     int numBorders = this->gameContext.currentRoom->borders.size();
     for(int i = 0; i < numBorders; i++) {
-        if (direction == this->gameContext.currentRoom->borders[i].direction) {
+        std::cout << this->gameContext.currentRoom->borders[i].direction[0] << std::endl;
+        if (direction[0] == this->gameContext.currentRoom->borders[i].direction[0]) {
             this->gameContext.currentRoom = this->getRoom(this->gameContext.currentRoom->borders[i].name);
-            std::cout << "moved " << direction << "to :" << this->gameContext.currentRoom->name << std::endl;
+            std::cout << "moved " << direction << " to :" << this->gameContext.currentRoom->name << std::endl;
             return;
         }
     }
