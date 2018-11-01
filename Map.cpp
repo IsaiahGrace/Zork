@@ -355,7 +355,8 @@ void Map::put(string item, string owner){
 		std::cout << "put Error: owner does not exist in context" << std::endl;
 	}
 
-	//TODO: CALL DELETE IN CONTEXT
+	this->deleteItem(item);
+
 
 	ownerobj->items.push_back(itemobj);
 
