@@ -43,10 +43,10 @@ int main(int argc, char **argv) {
   // Start the Finite state Machine
   // ******************************
 
-
-  while(1){
-	  //get current context
-	  map.gameContext.parseContext();
+  try {
+    while(1){
+      //get current context
+      map.gameContext.parseContext();
 
 	  //check context for active noncommand triggers
 	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
@@ -72,30 +72,9 @@ int main(int argc, char **argv) {
 
   }
 
-  /*
-   * while(1):
-   *
-   * 	#check context for active triggers
-   * 	if trigger condition is met:
-   * 		#execute trigger
-   *
-   * 	else:
-   * 		#scan command
-   *		command must be parsed at this point and placed into a string
-   *
-   *
-   * 		if context.checkCommandTriggers(string):
-   * 			#execute override command
-   * 		else:
-   * 			#execute regular command by calling execute(string)
-   *
-   *
-   */
-
-  // *************************
-  // cleanup after end of game
-  // *************************
-  // Free memory used
-
+  }
+  catch (int 10) {
+  std::cout << "Game Over" << std::endl;
   return EXIT_SUCCESS;
+  }
 }
