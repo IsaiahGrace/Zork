@@ -72,7 +72,7 @@ bool Condition::IsMet(void* mymap){
 
 }
 
-//TODO: this function
+
 //get item from map
 //check if it has status
 bool Condition::StatusMet(void* mymap){

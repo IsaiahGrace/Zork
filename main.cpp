@@ -48,30 +48,30 @@ int main(int argc, char **argv) {
       //get current context
       map.gameContext.parseContext();
 
-      //check context for active noncommand triggers
-      Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
-      if(commandTrigger != NULL){
-	//TODO: execute trigger
-      }
-      else{
-	//parse the command line
-	string command;
-	cout<< "Waiting for command: ";
-	getline(cin,command);
+	  //check context for active noncommand triggers
+	  Trigger* commandTrigger = map.gameContext.checkNonCommandTriggers(&map);
+	  if(commandTrigger != NULL){
+		  commandTrigger->ExecuteTrigger(&map);
+	  }
+	  else{
+		  //parse the command line
+		  string command;
+		  cout<< "Waiting for command: ";
+		  getline(cin,command);
 
-	Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
-	if(nonCommandTrigger != NULL){
-	  //TODO: execute trigger
-	}
-	else{
-	  map.parseAction(command);
-	  //parseAction should call the action func
-	}
-      }
+		  Trigger* nonCommandTrigger = map.gameContext.checkCommandTriggers(command,&map);
+		  if(nonCommandTrigger != NULL){
+			  nonCommandTrigger->ExecuteTrigger(&map);
+		  }
+		  else{
+			  map.parseAction(command);
+			  //parseAction should call the action func
+		  }
+	  }
+  }
+  }
+    catch (int i) {
+      std::cout << "Game Over" << std::endl;
+      return EXIT_SUCCESS;
     }
-  }
-  catch (int i) {
-    std::cout << "Game Over" << std::endl;
-  }
-  return EXIT_SUCCESS;
 }

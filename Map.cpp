@@ -94,6 +94,12 @@ Item* Map::getItem(string itemName){
 	  	  return NULL; // Item not parseAction
 }
 
+Creature* Map::getCreature(string creatureName){
+	  for (unsigned int i = 0; i < creatures.size(); i++) {
+		  if(creatures[i].name == creatureName) return &creatures[i];
+	  }
+	  	  return NULL; // Item not parseAction
+}
 
 // parseAction command takes an input string and parses it to call other action funcitons.
 // parseAction will print out an Error and not call any funcitons if the action string is not well formed.
@@ -104,23 +110,23 @@ void Map::parseAction(string input) {
   if(input == "n") {
     this->move("n");
     return;
-  } 
+  }
   if(input == "s") {
     this->move("s");
     return;
-  } 
+  }
   if(input == "e") {
     this->move("e");
     return;
-  } 
+  }
   if(input == "w") {
     this->move("w");
     return;
-  } 
+  }
   if(input == "i") {
     this->playerInventory.printInventory();
     return;
-  } 
+  }
   if(input == "open exit") {
     this->openExit();
     return;
@@ -129,7 +135,7 @@ void Map::parseAction(string input) {
     throw 10;
     return;
   }
-  
+
   // Parse action that have one opperand
   string action;
   string target;
@@ -148,7 +154,7 @@ void Map::parseAction(string input) {
   action = input.substr(0,breakPos);
   target = input.substr(breakPos+1);
   //std::cout << action << ":" << target << std::endl;
-  
+
   if(action == "take") {
     this->take(target);
     return;
@@ -168,7 +174,7 @@ void Map::parseAction(string input) {
   if(action == "delete") {
     this->deleteItem(target);
     return;
-  }  
+  }
   if(action == "turn") { // target will be "on item". this is the turn on command
     // parse target again and pass one item to this->turnOn()
     if(target.length() < 3) {
@@ -178,7 +184,7 @@ void Map::parseAction(string input) {
     item = target.substr(3);
     this->turnOn(item);
     return;
-  }  
+  }
   if(action == "put") {
     // parse target again and pass two strings to this->put()
     breakPos = target.find(" ",0);
@@ -266,3 +272,52 @@ void Map::add(string item, string owner) {std::cout << "add:" << item << ":" << 
 void Map::deleteItem(string item) {std::cout << "delete:" << item << std::endl;};
 void Map::update(string item, string status) {std::cout << "update:" << item << ":" << status << std::endl;};
 */
+void Map::turnOn(string item){
+	Item* itemobj = this->playerInventory.GetItem(item);
+	if(itemobj == NULL){
+		std::cout << "turnon Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+	if(itemobj->turnOn.size() == 0){
+		std::cout << "turnon Error: item has no object" << std::endl;
+		return;
+	}
+	std::cout << itemobj->turnOn[0].printText << std::endl;
+
+	for(unsigned int i = 0; i < itemobj->turnOn[0].action.size(); i++){
+		this->parseAction(itemobj->turnOn[0].action[i]);
+	}
+	return;
+}
+
+void Map::attack(string creature, string item){
+	Item* itemobj = this->playerInventory.GetItem(item);
+	if(itemobj == NULL){
+		std::cout << "Attack Error: item does not exist in inventory" << std::endl;
+		return;
+	}
+
+	Creature* creatureobj = this->gameContext.currentRoom->getCreature(creature);
+	if(creatureobj == NULL){
+		std::cout << "Attack Error: creature does not exist in room" << std::endl;
+		return;
+	}
+
+	if(creatureobj->vulnerability != item){
+		std::cout << "Attack Error: vulnerability does not match item" << std::endl;
+	}
+
+
+	for(unsigned int i = 0; i < creatureobj->attack.conditions.size();i++){
+		if(creatureobj->attack.conditions[i].IsMet(this) == false){
+			std::cout << "Attack Error: not all conditions met" << std::endl;
+			return;
+		}
+	}
+	std::cout << creatureobj->attack.print << std::endl;
+
+	for(unsigned int i = 0; i < creatureobj->attack.actions.size(); i++){
+		this->parseAction(creatureobj->attack.actions[i]);
+	}
+	return;
+}

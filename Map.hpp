@@ -19,21 +19,25 @@ public:
   virtual ~Map() {};
   void parseAction(string);
   // Action methods (need implimentation) REMOVE {}
-  void move(string direction);
-  void openExit();
-  void take(string item);
-  void open(string container);
-  void read(string item);
-  void drop(string item);
-  void put(string item, string container);
+  void move(string direction) {};
+  void openExit() {};
+  void take(string item) {};
+  void open(string container) {};
+  void read(string item) {};
+  void drop(string item) {};
+  void put(string item, string container) {};
   void turnOn(string item);
   void attack(string creature, string item);
   void add(string item, string owner);
   void deleteItem(string item);
   void update(string item, string status);
   Room* getRoom(string);
+  // Game over method throws exception
+  void gameOver();
+  Room* getRoom(string);
   Owner* getOwner(string);
   Item* getItem(string);
+  Creature* getCreature(string);
   Context gameContext;
   Inventory playerInventory;
   vector<Room> rooms;

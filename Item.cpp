@@ -9,7 +9,7 @@ Item::Item(xml_node<> *node) : Base::Base(node) {
     std::cout <<"Item: " << tagName << std::endl;
     
     if(tagName == "writing") writing = child->value();
-    else if(tagName == "turnon") turnOn = TurnOn(child);
+    else if(tagName == "turnon") turnOn.push_back(TurnOn(child));
 
     child = child->next_sibling();
   }

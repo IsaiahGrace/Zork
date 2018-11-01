@@ -9,7 +9,7 @@ TurnOn::TurnOn(xml_node<> *node) {
     std::cout << "TurnOn: " << tagName << std::endl;
     
     if(tagName == "print") printText = child->value();
-    else if(tagName == "action") action = child->value();
+    else if(tagName == "action") action.push_back(child->value());
 
     child = child->next_sibling();
   }
