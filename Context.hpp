@@ -16,6 +16,7 @@ public:
   Context(Room* startingRoom, Inventory* inventory);
   virtual ~Context() {};
 
+  Item* getItem(string itemName);
   void parseContext();
   Trigger* checkCommandTriggers(string,void*);
   Trigger* checkNonCommandTriggers(void*);

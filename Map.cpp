@@ -72,6 +72,11 @@ Room* Map::getRoom(string roomname){
 
 //searches rooms and containers to see if there is a name match, returns ptr if so. If no match, returns NULL
 Owner* Map::getOwner(string ownerName){
+
+	if(ownerName == "inventory"){
+		return &playerInventory;
+	}
+
 	for(unsigned int i = 0; i < rooms.size(); i++){
 			if(rooms[i].name.compare(ownerName) == 0){
 				return &rooms[i];
@@ -204,6 +209,10 @@ void Map::parseAction(string input) {
   // delete
   // update
   // Game Over
+}
+
+void Map::put(string item, string owner){
+
 }
 
 void Map::turnOn(string item){

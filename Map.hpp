@@ -25,7 +25,7 @@ public:
   void open(string container) {};
   void read(string item) {};
   void drop(string item) {};
-  void put(string item, string container) {};
+  void put(string item, string container);
   void turnOn(string item);
   void attack(string creature, string item);
   // Game over method throws exception
