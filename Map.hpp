@@ -32,8 +32,6 @@ public:
   void deleteItem(string item);
   void update(string item, string status);
   Room* getRoom(string);
-  // Game over method throws exception
-  void gameOver();
   Base* getBase(string);
   Owner* getOwner(string);
   Item* getItem(string);
