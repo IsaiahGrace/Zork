@@ -485,6 +485,9 @@ void Map::take(string item) {
 }
 
 void Map::deleteItem(string itemname) {
+#ifndef RELEASE
+    std::cout << "deleteItem try to delete: " << itemname << std::endl;
+#endif
     for (unsigned int i = 0; i < rooms.size(); i++) {
 
         //checks all items in all containers in each room
@@ -492,6 +495,9 @@ void Map::deleteItem(string itemname) {
             for (unsigned int k = 0; k < rooms[i].containers[j]->items.size(); k++) {
                 if (rooms[i].containers[j]->items[k]->name == itemname) {
                     rooms[i].containers[j]->items.erase(rooms[i].containers[j]->items.begin() + k);
+#ifndef RELEASE
+                    std::cout << "deleteItem Actually deleted: " << itemname << std::endl;
+#endif
                 }
             }
         }
@@ -499,6 +505,9 @@ void Map::deleteItem(string itemname) {
         for (unsigned int q = 0; q < rooms[i].items.size(); q++) {
             if (rooms[i].items[q]->name == itemname) {
                 rooms[i].items.erase(rooms[i].items.begin() + q);
+#ifndef RELEASE
+                std::cout << "deleteItem Actually deleted: " << itemname << std::endl;
+#endif
             }
         }
     }
@@ -507,6 +516,9 @@ void Map::deleteItem(string itemname) {
     for (unsigned int i = 0; i < playerInventory.items.size(); i++) {
         if (playerInventory.items[i]->name == itemname) {
             playerInventory.items.erase(playerInventory.items.begin() + i);
+#ifndef RELEASE
+            std::cout << "deleteItem Actually deleted: " << itemname << std::endl;
+#endif
         }
     }
     // Search room names
@@ -514,10 +526,21 @@ void Map::deleteItem(string itemname) {
         for (unsigned int i = 0; i < this->rooms.size(); i++) {
             if (itemname == this->rooms[i].name) {
                 this->rooms.erase(this->rooms.begin() + i);
+#ifndef RELEASE
+                std::cout << "deleteItem Actually deleted: " << itemname << std::endl;
+#endif
             }
         }
     }
-    //std::cout << "items deleted successfully?" << std::endl;
+    // Search all creatures in context
+    for (unsigned int i = 0; i < this->gameContext.currentRoom->creatures.size(); i++) {
+        if (itemname == this->gameContext.currentRoom->creatures[i]->name) {
+            this->gameContext.currentRoom->creatures.erase(this->gameContext.currentRoom->creatures.begin() + i);
+#ifndef RELEASE
+            std::cout << "deleteItem Actually deleted: " << itemname << std::endl;
+#endif
+        }
+    }
 }
 
 void Map::update(string item, string status) {
