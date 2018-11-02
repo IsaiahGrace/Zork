@@ -7,8 +7,10 @@ Condition::Condition(xml_node<> *node) {
 	status = "";
   while(child) {
     string tagName = child->name();
+#ifndef RELEASE
     std::cout <<"Condition: "<< tagName << std::endl;
-    
+#endif
+
     if(tagName == "has") {
       if(string(child->value()) == "yes") has = true;
       else if(string(child->value()) == "no") has = false;
@@ -79,11 +81,15 @@ bool Condition::StatusMet(void* mymap){
 	Map* mapptr = static_cast<Map*>(mymap);
 	Base* testbase = mapptr->getBase(object);
 	if(testbase == NULL){
+#ifndef RELEASE
 		std::cout << "ConditionStatus Error: item does not exist" << std::endl;
+#endif
 		//this should never happen
 		return false;
 	}
+#ifndef RELEASE
 	std::cout << "ConditionStatus item status is: " << testbase->status << std::endl;
+#endif
 	if(testbase->status == status){
 		return true;
 	}

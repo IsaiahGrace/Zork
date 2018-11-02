@@ -356,6 +356,10 @@ void Map::move(string direction) {
 #ifndef RELEASE
                 std::cout << "move error: room referenced by border does not exist." << std::endl;
 #endif
+#ifdef RELEASE
+                std::cout << "You can't go that way anymore." << std::endl;
+#endif
+                return;
             } else {
                 this->gameContext.currentRoom = potentialRoom;
 #ifndef RELEASE
@@ -370,7 +374,7 @@ void Map::move(string direction) {
     std::cout << "move Error: unable to find room from direction: " << direction << std::endl;
 #endif
 #ifdef RELEASE
-    std::cout << "Error" << std::endl;
+    std::cout << "You can't go that way." << std::endl;
 #endif
     return;
 }
@@ -381,6 +385,9 @@ void Map::openExit() {
     }
 #ifndef RELEASE
     std::cout << "openExit Error: currentRoom is not an exit room" << std::endl;
+#endif
+#ifdef RELEASE
+    std::cout << "You can't find an exit from here." << std::endl;
 #endif
 }
 
@@ -395,6 +402,9 @@ void Map::turnOn(string item) {
     if (itemobj->turnOn.size() == 0) {
 #ifndef RELEASE
         std::cout << "turnon Error: item has no object" << std::endl;
+#endif
+#ifdef RELEASE
+        std::cout << "You can't turn on the " << item << "." << std::endl;
 #endif
         return;
     }
@@ -413,7 +423,7 @@ void Map::attack(string creature, string item) {
         std::cout << "Attack Error: item does not exist in inventory" << std::endl;
 #endif
 #ifdef RELEASE
-        std::cout << "You don't have that item in your inventory" << std::endl;
+        std::cout << "You don't have a " << item << " in your inventory." << std::endl;
 #endif
         return;
     }
@@ -423,6 +433,9 @@ void Map::attack(string creature, string item) {
 #ifndef RELEASE
         std::cout << "Attack Error: creature does not exist in room" << std::endl;
 #endif
+#ifndef RELEASE
+        std::cout << "You look around the room and cant find the " << creature  << "." << std::endl;
+#endif
         return;
     }
 
@@ -431,8 +444,9 @@ void Map::attack(string creature, string item) {
         std::cout << "Attack Error: vulnerability does not match item" << std::endl;
 #endif
 #ifdef RELEASE
-        std::cout << "The attack was not very successful" << std::endl;
+        std::cout << "The attack was not very successful. The " << creature << " seems unphased by the " << item  << "." << std::endl;
 #endif
+        return;
     }
 
 
@@ -440,6 +454,9 @@ void Map::attack(string creature, string item) {
         if (creatureobj->attack.conditions[i].IsMet(this) == false) {
 #ifndef RELEASE
             std::cout << "Attack Error: not all conditions met" << std::endl;
+#endif
+#ifdef RELEASE
+            std::cout << "You prepare to attack the " << creature << " but you realize the conditions aren't right yet and stop." << std::endl;
 #endif
             return;
         }
@@ -456,7 +473,6 @@ void Map::attack(string creature, string item) {
 }
 
 void Map::put(string item, string owner) {
-    //std::cout <<"puttingitem" <<std::endl;
     Item *itemobj = this->gameContext.getItem(item);
     if (itemobj == NULL) {
 #ifndef RELEASE
@@ -580,8 +596,6 @@ Base *Map::getBase(string basename) {
 }
 
 void Map::add(string itemname, string ownername) {
-
-    //TODO: define this. Can it add creatures/containers to rooms? or does it just add items
     if (ownername == "inventory") {
 #ifndef RELEASE
         std::cout << "add Error: cannot add objects to inventory" << std::endl;
@@ -617,6 +631,9 @@ void Map::read(string itemname) {
 #ifndef RELEASE
         std::cout << "Read Error: item does not exist in inventory" << std::endl;
 #endif
+#ifdef RELEASE
+        std::cout << "There doesn't appear to be a " << itemname << " in your inventory." << std::endl;
+#endif
         return;
     }
 
@@ -633,6 +650,9 @@ void Map::open(string containername) {
     if (containerobj == NULL) {
 #ifndef RELEASE
         std::cout << "open error: container does not exist in context";
+#endif
+#ifndef RELEASE
+        std::cout << "You look around but can't find the " << containername << std::endl;
 #endif
     }
 

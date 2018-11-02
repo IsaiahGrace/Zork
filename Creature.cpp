@@ -6,7 +6,9 @@ Creature::Creature(xml_node<> *node) : Base::Base(node) {
 
   while(child) {
     string tagName = child->name();
+#ifndef RELEASE
     std::cout <<"Creature: " << tagName << std::endl;
+#endif
     
     if(tagName == "vulnerability") vulnerability = child->value();
     else if(tagName == "attack") attack = Attack(child);

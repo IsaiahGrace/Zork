@@ -12,7 +12,9 @@ Container::Container(xml_node<> *node,void* mymap) : Base::Base(node), Owner::Ow
   //status = "locked";
   while(child) {
     string tagName = child->name();
+#ifndef RELEASE
     std::cout << "Container: " << tagName << std::endl;
+#endif
     
     if(!tagName.compare("accept")) accept = child->value();
     //else if(!tagName.compare("item")) items.push_back(child->value());

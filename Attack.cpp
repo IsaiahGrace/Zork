@@ -6,7 +6,9 @@ Attack::Attack(xml_node<> *node) {
   
   while(child) {
     string tagName = child->name();
+#ifndef RELEASE
     std::cout <<"Attack: "<< tagName << std::endl;
+#endif
 
     if(tagName == "condition") conditions.push_back(Condition(child));
     else if(tagName == "print") print = child->value();

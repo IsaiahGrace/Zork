@@ -12,7 +12,9 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
 
   while(child) {
     string tagName = child->name();
+#ifndef RELEASE
     std::cout << "Room: "<<  tagName << std::endl;
+#endif
 
     /*
      * this block here goes through all initialized items/containers/creatures
@@ -23,7 +25,9 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
     if(tagName == "creature"){
     	for(unsigned int i = 0; i < mapptr->creatures.size();i++){
     		if(mapptr->creatures[i].name == child->value()){
+#ifndef RELEASE
     			std::cout << "Creature:" << mapptr->creatures[i].name << "added to room"<< std::endl;
+#endif
     			creatures.push_back(&mapptr->creatures[i]);
     		}
     	}
@@ -31,7 +35,9 @@ Room::Room(xml_node<char> *node,void* mymap) : Base::Base(node),Owner::Owner(nod
     else if(tagName == "container"){
     	for(unsigned int i = 0; i < mapptr->containers.size();i++){
     		if(mapptr->containers[i].name == child->value()){
+#ifndef RELEASE
     			std::cout << "Container:" << mapptr->containers[i].name << "added to room"<< std::endl;
+#endif
     			containers.push_back(&mapptr->containers[i]);
     		}
     	}
