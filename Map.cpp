@@ -469,6 +469,7 @@ void Map::put(string item, string owner) {
 #ifndef RELEASE
         std::cout << "put Error: owner does not exist in context" << std::endl;
 #endif
+        return;
     }
     this->deleteItem(item);
 

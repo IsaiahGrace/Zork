@@ -9,7 +9,7 @@ using namespace rapidxml;
 
 Container::Container(xml_node<> *node,void* mymap) : Base::Base(node), Owner::Owner(node,mymap) {
   xml_node<> *child = node->first_node();
-  status = "locked";
+  //status = "locked";
   while(child) {
     string tagName = child->name();
     std::cout << "Container: " << tagName << std::endl;
@@ -22,9 +22,9 @@ Container::Container(xml_node<> *node,void* mymap) : Base::Base(node), Owner::Ow
 }
 
 Item* Container::GetItem(string itemName) {
-	if(status == "locked"){
-		return NULL;
-	}
+	//if(status == "locked"){
+	//	return NULL;
+	//}
 
   for (unsigned int i = 0; i < items.size(); i++) {
     if(items[i]->name == itemName) return items[i];
