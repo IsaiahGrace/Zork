@@ -13,13 +13,17 @@ Owner::Owner(xml_node<> *node,void* mymap){
 
 	  while(child) {
 	    string tagName = child->name();
+#ifndef RELEASE
 	    std::cout << "Owner: " << tagName << std::endl;
+#endif
 
 	    if(tagName == "item"){
 	    	for(unsigned int i = 0; i < mapptr->items.size() ;i++){
 
 	      		if(mapptr->items[i].name == child->value()){
+#ifndef RELEASE
 	      			std::cout << "Item:" << mapptr->items[i].name << " added to container" << std::endl;
+#endif
 	       			items.push_back(&mapptr->items[i]);
 	      		}
 	    	}
